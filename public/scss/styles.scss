@@ -1,11 +1,19 @@
 @import 'node_modules/bootstrap/scss/bootstrap';
 
+@media (min-width: 992px) { //when screen size is at least 992px)
+.home-register-form-wrapper {
+  // min-width: 300px;
+}
+}
+
 body {
   background-color: #FFF7D5;
   font-family: 'PT Sans', sans-serif;
+
   .home-register-form-wrapper {
     background-color: white;
     border: 3px solid #575AB6;
+    min-width: 300px;
 
 
     .home-register-text {
@@ -30,7 +38,11 @@ body {
   color: #707070;
 }
 
-
+#burgers-index {
+  font-family: 'Permanent Marker', sans-serif;
+  text-align: center;
+  color: #707070;
+}
 
 #home-register-form-submit-btn {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
@@ -44,8 +56,18 @@ body {
   color: #707070;
 }
 
+#signup-modal  {
 
+  h5 {
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 20px;
+    color: #707070;
+  }
 
-.login-here-text {
-  text-align: center;
+  .modal-content {
+    border: 3px solid #575AB6;
+  }
+
 }

@@ -4,27 +4,42 @@
 
 
 <%- contentFor('body') %>
-<div class ="main-hero-text-wrapper col-6 ms-5 mt-5">
-<h1 class="main-hero-text">HAVE FUN</h1>
-  <h1>CREATING YOUR OWN BURGERS</h1>
-  <h1>AND RATE OTHER BURGERS!</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class ="main-hero-text-wrapper col-lg-8 mx-auto mt-5">
+        <h1 class="main-hero-text">HAVE FUN CREATING YOUR OWN BURGERS AND RATE OTHER BURGERS!</h1>
+
+      </div>
+    </div>
+    <div class="col col-md-2 col-auto">
+    </div>
 </div>
 
-<div class="home-register-form-wrapper col-3 ms-5 mt-5 ">
-  <form>
-    <div class="home-register-text mt-3">REGISTER NOW</div>
-    <div class="mt-3 mb-3">
-      <label for="home-register-form-email" class="form-label ms-5">EMAIL:</label>
-      <input type="email" id="home-register-form-email"  class="form-control w-75 mx-auto" name="email">
+  <div class="row">
+    <div class="col">
+      <div class="home-register-form-wrapper col-3 mx-auto mt-5">
+        <form class="">
+          <div class="home-register-text mt-3">REGISTER NOW</div>
+          <div class="mt-3 mb-3">
+            <label for="home-register-form-email" class="form-label ms-5">EMAIL:</label>
+            <input type="email" id="home-register-form-email"  class="form-control w-75 mx-auto" name="email">
+          </div>
+          <div class="mt-3 mb-3">
+            <label for="home-register-form-password" class="form-label ms-5">PASSWORD:</label>
+            <input type="password" id="home-register-form-password" class="form-control w-75 mx-auto" name="password">
+          </div>
+          <div class="text-center">
+            <button type="submit" id="home-register-form-submit-btn" class="btn btn-warning mx-auto mb-3">REGISTER</button></div>
+            <div class="form-text login-here-text mx-auto mb-3 text-center">Already have an account? Login here!
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="mt-3 mb-3">
-      <label for="home-register-form-password" class="form-label ms-5">PASSWORD:</label>
-      <input type="password" id="home-register-form-password" class="form-control w-75 mx-auto" name="password">
-    </div>
-    <div class="">
-      <button type="submit" id="home-register-form-submit-btn" class="btn btn-warning mx-auto">REGISTER</button>
-      <div class="form-text login-here-text mx-auto mb-3">Already have an account? Login here!</div>
-    </div>
-  </form>
 
+    <div class="hero-image col col-6">
+      <img src="unit2/unit2-project/assets/hero-image.png" alt="">
+    </div>
+
+  </div>
 </div>
