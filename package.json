@@ -1,5 +1,5 @@
 {
-  "name": "unit2-project",
+  "name": "unit2_project",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -32,7 +32,7 @@
     "node-sass": "^6.0.0",
     "pg": "^8.6.0",
     "sequelize": "^6.6.2",
-    "sequelize-auto": "^0.8.3",
+    "sequelize-auto": "^0.8.4",
     "sequelize-cli": "^6.2.0"
   }
 }
