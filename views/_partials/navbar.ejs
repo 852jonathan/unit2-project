@@ -1,44 +1,59 @@
-<nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">The Burger Artisan</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/wishlists">BROWSE ALL BURGERS</a>
-      </li>
-      <!-- < if (currentUser) { %> -->
-        <li class="nav-item">
-          <a class="nav-link" href="/my/wishlists">MY BURGERS</a>
-        </li>
-        <li class="nav-item">
-          <a id="logout-btn" class="nav-link">LOGOUT</a>
-        </li>
-      <!-- < } else { %> -->
-        <li class="nav-item">
-          <a class="nav-link" href="/auth/signup">REGISTER</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/auth/login">LOGIN</a>
-        </li>
-      <!-- < } %> -->
-    </ul>
-  </div>
-</nav>
-
 <script>
   $(document).ready(function() {
-    $('#logout-btn').on('click', function(e) {
+    $navbar = $('#navbar')
+
+    $navbar.on('click', '#signup-btn', function(e) {
+      e.preventDefault()
+      $('#signup-modal').modal('show')
+    })
+
+    $navbar.on('click', '#login-btn', function(e) {
+      e.preventDefault()
+      $('#login-modal').modal('show')
+    })
+
+    $navbar.on('click', '#logout-btn', function(e) {
       e.preventDefault()
 
       axios({
-        url: '/api/auth/logout',
-        method: 'DELETE'
+        method: 'DELETE',
+        url: '/api/auth/logout'
       }).then(function() {
         window.location.href = '/'
       })
     })
   })
 </script>
+
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand ms-3" href="/">The Burger Artisan</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ms-auto me-3 ">
+      <li class="nav-item">
+        <a class="nav-link" href="/burgers">BROWSE ALL BURGERS</a>
+      </li>
+      <!-- < if (currentUser) { %> -->
+        <li class="nav-item">
+          <a class="nav-link" href="/my/burgers">MY BURGERS</a>
+        </li>
+        <li class="nav-item">
+          <a id="logout-btn" class="nav-link">LOGOUT</a>
+        </li>
+      <!-- < } else { %> -->
+        <li class="nav-item">
+          <a id="signup-btn" class="nav-link">REGISTER</a>
+        </li>
+        <li class="nav-item">
+          <a id="login-btn" class="nav-link">LOGIN</a>
+        </li>
+      <!-- < } %> -->
+    </ul>
+  </div>
+</nav>
+
+<%- include('./signup-modal') %>
+<%- include('./login-modal') %>
