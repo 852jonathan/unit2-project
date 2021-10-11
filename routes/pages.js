@@ -7,7 +7,7 @@ const router = Router()
 router.use('/my/burgers/new', require('../controllers/pages/my-burgers/new'))
 router.use('/my/burgers', require('../controllers/pages/my-burgers/index'))
 
-// //Public Burgers
+//Public Burgers
 // router.use('/burgers/:id', require('../controllers/pages/burgers/:id'))
 router.use('/burgers', require('../controllers/pages/burgers/index'))
 

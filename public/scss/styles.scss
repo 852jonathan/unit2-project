@@ -22,6 +22,8 @@
 //   }
 // }
 
+// General Settings
+
 body {
   background-color: #FFF7D5;
   font-family: 'PT Sans', sans-serif;
@@ -40,6 +42,8 @@ body {
       }
     }
 }
+
+
 
 #navbar {
   font-weight: bold;
@@ -81,6 +85,15 @@ body {
 
 }
 
+.hero-image-wrap {
+  // z-index: -1;
+  .hero-img {
+    width: auto;
+    height: max(400px);
+    // display: none;
+  }
+}
+
 #home-register-form-submit-btn {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
   font-weight: bold;
@@ -100,6 +113,8 @@ body {
   background-color: #75EA84;
 }
 
+
+//Sign up modal ===============
 #signup-modal  {
 
   h5 {
@@ -115,6 +130,7 @@ body {
   }
 }
 
+//Log in modal ===============
 #login-modal  {
 
   h5 {
@@ -130,20 +146,22 @@ body {
   }
 }
 
-.hero-image-wrap {
-  // z-index: -1;
-  .hero-img {
-    width: auto;
-    height: max(400px);
-    // display: none;
-  }
-}
 
-// My Burgers Index
+
+// My Burgers Index ===============
 #new-btn {
   font-weight: bold;
   font-family: 'PT Sans', sans-serif;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
   background-color: #4BD385;
 
+}
+
+
+#new-burger-btn {
+  font-weight: bold;
+  font-family: 'PT Sans', sans-serif;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+  background-color: #4BD385;
+  color: white
 }
