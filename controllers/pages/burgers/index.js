@@ -1,5 +1,5 @@
 const { Op } = require("sequelize")
-const { Burger } = require('../../../models')
+const { Burger, Rating, User } = require('../../../models')
 
 const pagesBurgersIndex = async function(req, res) {
   const { query } = req
@@ -16,7 +16,10 @@ const pagesBurgersIndex = async function(req, res) {
     },
     order: [['createdAt', 'DESC']],
     limit,
-    offset
+    offset,
+    include: {
+      association: Burger.User
+    }
   })
   res.render('pages/burgers/index', {
     burgers: results.rows,

@@ -1,10 +1,14 @@
 const bcrypt = require("bcrypt")
+const crypto = require('crypto')
+
 const { body } = require('express-validator')
+const multer = require('multer')
+
 
 const { User } = require('../../../models')
 const { checkValidation } = require('../../_helpers')
 
-const permittedSignupParams = ['email', 'passwordHash']
+const permittedSignupParams = ['email', 'password']
 
 const validation = [
   body('email')
@@ -23,7 +27,7 @@ const validation = [
 
 const userSerializer = function(values) {
   const { ...user } = values.dataValues
-  delete user.passwordHash
+  delete user.password
   return user
 }
 
@@ -32,8 +36,8 @@ const apiAuthSignup = async function(req, res) {
 
   // Build a new user
   const user = await User.build(userParams, { attributes: permittedSignupParams })
-  // Set the passwordHash with the hashed password with 10 rounds of salting
-  user.passwordHash = await bcrypt.hash(userParams.password, 10)
+  // Set the password with the hashed password with 10 rounds of salting
+  user.password = await bcrypt.hash(userParams.password, 10)
   // Saves the user
   await user.save()
 
@@ -47,6 +51,7 @@ const apiAuthSignup = async function(req, res) {
 }
 
 module.exports = [
+  multer().none(),
   validation,
   checkValidation,
   apiAuthSignup

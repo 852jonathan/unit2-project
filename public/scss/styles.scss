@@ -6,13 +6,13 @@
 }
 }
 
-// @media (max-height: 500px) { /** play with the numbers to find the right height **/
-//   .hero-img {
-//     width: max(300px);
-//     height: auto;
-//     opacity: 0.5;
-//   }
-// }
+@media (max-width: 500px) { /** play with the numbers to find the right height **/
+  .hero-img {
+    // width: max(300px);
+    // height: auto;
+    opacity: 0.5;
+  }
+}
 
 // @media (max-height: 300px) { /** play with the numbers to find the right height **/
 //   .hero-img {
@@ -26,20 +26,19 @@ body {
   background-color: #FFF7D5;
   font-family: 'PT Sans', sans-serif;
 
-  .home-register-form-wrapper {
-    background-color: white;
-    border: 3px solid #575AB6;
-    min-width: 300px;
+    .home-register-form-wrapper {
+      background-color: white;
+      border: 3px solid #575AB6;
+      min-width: 300px;
 
-
-    .home-register-text {
-      text-align: center;
-      text-decoration: underline;
-      font-weight: bold;
-      font-size: 28px;
-      color: #707070;
+      .home-register-text {
+        text-align: center;
+        text-decoration: underline;
+        font-weight: bold;
+        font-size: 28px;
+        color: #707070;
+      }
     }
-  }
 }
 
 #navbar {
@@ -59,10 +58,27 @@ body {
   color: #DCA200;
 }
 
+
+// Public Burgers Index Page
 #burgers-index {
-  font-family: 'Permanent Marker', sans-serif;
-  text-align: center;
-  color: #707070;
+
+  .burgers-index-text {
+    font-family: 'Permanent Marker', sans-serif;
+    text-align: center;
+    color: #707070;
+  }
+
+  h2 {
+    font-family: 'Permanent Marker', sans-serif;
+    color: #707070;
+
+  }
+
+  .burger-preview-img {
+    width: 200px;
+    height: auto;
+  }
+
 }
 
 #home-register-form-submit-btn {
@@ -114,8 +130,20 @@ body {
   }
 }
 
+.hero-image-wrap {
+  // z-index: -1;
   .hero-img {
     width: auto;
-    height: max(800px);
+    height: max(400px);
     // display: none;
   }
+}
+
+// My Burgers Index
+#new-btn {
+  font-weight: bold;
+  font-family: 'PT Sans', sans-serif;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+  background-color: #4BD385;
+
+}

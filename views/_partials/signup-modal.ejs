@@ -19,10 +19,11 @@
       axios({
         method: 'POST',
         url: '/api/auth/signup',
-        data: formData
+        data: formData,
+        withCredentials: true
       }).then(function() {
         $signupModal.modal('hide')
-        $('#login-modal').modal('show')
+        window.location.reload()
       }).catch(function(err) {
         switch (err.response.status) {
           case 406: {
@@ -53,11 +54,6 @@
 <div id="signup-modal" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <!-- <button type="button" class="btn-close ms-auto mt-2 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
-      <div class="modal-header pt-0">
-        <h5 class="modal-title mx-auto pt-0">REGISTER</h5>
-      </div> -->
-
 
       <div class="modal-header d-flex justify-content-center ps-5">
         <h5 class="modal-title pt-0 mx-auto flex-fill">REGISTER</h5>
@@ -80,7 +76,7 @@
       </div>
       <div class="modal-footer py-0">
 
-        <button type="button" id="signup-form-submit" class="btn btn-warning mx-auto mt-3"  >REGISTER</button>
+        <button type="button" id="signup-form-submit" class="btn btn-warning mx-auto mt-3">REGISTER</button>
 
       </div>
       <button type="button" id="login-in-signup" class="btn btn-link mt-0" data-target="#login-modal"  data-dismiss="modal" data-toggle="modal">

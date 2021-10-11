@@ -43,7 +43,7 @@ app.use(express.json())
 // Parse cookies
 app.use(cookieSession({
   name: 'session',
-  keys: [process.env.COOKIE_SECRET]
+  keys: ['sadfsdfsdfdsf']
   // this is a secret string used to encrypt/decrypt cookie information
   // normally this key should be stored in environments
   // but for the sake of learning, we will leave this as is

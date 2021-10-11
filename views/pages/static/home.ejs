@@ -11,8 +11,41 @@
 
     $homeRegister.on('click', '#login-in-home', function(e) {
       e.preventDefault()
-      // $signupModal.modal('hide')
       $loginModal.modal('show')
+    })
+
+    $homeRegister.on('click', '#home-register-form-submit-btn', function(e) {
+      e.preventDefault()
+      const formData = new FormData($signupForm[0])
+
+      axios({
+        method: 'POST',
+        url: '/api/auth/signup',
+        data: formData
+      }).then(function() {
+      }).catch(function(err) {
+        switch (err.response.status) {
+          case 406: {
+            const { response: { data: { errors } }} = err
+
+            $homeRegister.find('.invalid-feedback').empty()
+            $homeRegister.find('.is-invalid').removeClass('is-invalid')
+
+            errors.forEach(function(error) {
+              const { param: fieldName, msg } = error
+              const $input = $homeRegister.find(`[name="${fieldName}"]`)
+              const $invalidFeedback = $input.siblings('.invalid-feedback')
+              $input.addClass('is-invalid')
+              $invalidFeedback.text(msg)
+            })
+            break
+          }
+          default: {
+            console.log(err.response)
+            break
+          }
+        }
+      })
     })
   })
 </script>
@@ -30,7 +63,7 @@
 
     <div class="col col-md-2 col-sm-0 col-auto">
       <div class="col-3">
-        <div class="logo-img col col-8">
+        <div class="logo-img-wrap col col-8">
           <img src="assets/logo.png" alt="" class="logo">
         </div>
     </div>
@@ -40,6 +73,7 @@
 <div class="container">
   <div class="row">
     <div class="col-7">
+
       <div id="home-register" class="home-register-form-wrapper col-6 mx-auto mt-3">
 
         <form class="">
@@ -66,7 +100,7 @@
       </div>
     </div>
     <div class="col-3">
-    <div class="hero-image col col-8">
+    <div class="hero-image-wrap col col-8">
       <img src="assets/hero-image.png" alt="" class="hero-img">
     </div>
     </div>

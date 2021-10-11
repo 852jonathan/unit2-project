@@ -5,6 +5,8 @@ const { AuthenticityToken } = require("../../models")
 module.exports = async function (req, res, next) {
   const { session: { token } } = req
 
+  console.log(token)
+
   if (token) {
     const authToken = await AuthenticityToken.findOne({
       where: { token },

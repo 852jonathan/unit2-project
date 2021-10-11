@@ -7,33 +7,31 @@
 <!-- <script src="/js/burgers/index-control.js" defer></script> -->
 
 <%- contentFor('body') %>
-<div id="burgers-index" class="container my-3 ">
-  <h1 class="burgers-index-text mb-3 mt-5 text-center">Create and Rate Burgers</h1>
+<div id="new-my-burgers" class="container my-3 ">
+  <h1 class="burgers-title-text mb-3 mt-5 text-center">Create Your Burger</h1>
 
   <!-- <- include('_partials/filter') %> -->
-  <h2>Newest Burgers</h2>
-  <% if (burgers.length > 0) { %>
+  <h2>New Burger</h2>
+  <!-- < if (burgers.length > 0) { %>
     <div id="burgers-list" class="row align-items-center g-3 text-center">
-      <% burgers.forEach(function(burgers){ %>
+      < burgers.forEach(function(burgers){ %>
 
   <div class="col-md-4">
     <div class="card">
       <img class="burger-preview-img card-img-top mx-auto" src="assets/burger-placeholder.png" alt="BurgerPreview">
       <div class="card-body">
-        <h5 class="card-title"><a class="show-btn font-weight-bold" data-url="/api/burgers/<%= burgers.id %>" data-method="GET"><%= burgers.burgerName %></a></h5>
-        <p class="burger-card-description card-text text-truncate"><%= burgers.description %></p>
+        <h5 class="card-title"><a class="show-btn font-weight-bold" data-url="/api/burgers/<= burgers.id %>" data-method="GET"><= burgers.burgerName %></a></h5>
+        <p class="burger-card-description card-text text-truncate"><= burgers.description %></p>
       </div>
     </div>
   </div>
-        <% }) %>
-  </div>
-
-
+        < }) %>
+  </div> -->
 
     <!-- <- include('_partials/pagination') %> -->
-  <% } else { %>
+  <!-- < } else { %>
     <div>No Burgers</div>
-  <% } %>
-</div>
+  < } %>
+</div> -->
 
 <!-- <- include('../../_partials/modal') %> -->

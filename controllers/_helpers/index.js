@@ -3,10 +3,10 @@ module.exports = {
   authenticateCurrentUserByToken: require('./authenticate-current-user-by-token'),
   checkValidation: require('./check-validation'),
   getUserByToken: require('./get-user-by-token'),
-  wishlist: {
-    getWishlistById: require('./wishlists/get-wishlist-by-id')
+  burger: {
+    getBurgerById: require('./burgers/get-burger-by-id')
   },
-  myWishlist: {
-    getCurrentUserWishlistById: require('./my-wishlists/get-current-user-wishlist-by-id')
+  myBurger: {
+    getCurrentUserBurgerById: require('./my-burgers/get-current-user-burger-by-id')
   }
 }

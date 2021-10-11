@@ -1,10 +1,10 @@
 const { Router } = require('express')
 const router = Router()
 
-// //Private Burgers
+//Private Burgers
 // router.use('/my/burgers/:id/edit', require('../controllers/pages/my-burgers/:id/edit'))
 // router.use('/my/burgers/:id', require('../controllers/pages/my-burgers/:id'))
-// router.use('/my/burgers/new', require('../controllers/pages/my-burgers/new'))
+router.use('/my/burgers/new', require('../controllers/pages/my-burgers/new'))
 router.use('/my/burgers', require('../controllers/pages/my-burgers/index'))
 
 // //Public Burgers

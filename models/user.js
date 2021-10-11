@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       User.Burgers = this.hasMany(models.Burger)
       User.Ratings = this.hasMany(models.Rating)
       User.RatedBurgers = this.belongsToMany(models.Burger, { through: 'Rating' })
+      User.AuthenticityTokens = this.hasMany(models.AuthenticityToken)
     }
   };
 

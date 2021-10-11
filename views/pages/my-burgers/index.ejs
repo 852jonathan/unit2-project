@@ -11,25 +11,33 @@
 <div id="burgers-index" class="container my-3 text-center">
   <h1 class="mb-3 mt-5">My Burgers</h1>
 
-  <!-- <- include('_partials/filter') %>
+<!-- <- include('_partials/filter') %> --  <!-- <button id="new-btn" class="btn btn-success btn-sm mb-3" href="/my/burgers/new">CREATE NEW BURGER</button> -->
+  <a id="new-btn" class="btn btn-success btn-sm mb-3" href="/my/burgers/new">CREATE NEW BURGER</a>
 
-  <button id="new-btn" class="btn btn-success btn-sm" data-url="/api/my/burgers/new" data-method="GET">New</button>
+  <h2>My Burger Creations</h2>
 
-  < if (burgers.length > 0) { %>
-    <ul id="burgers-list" class="list-unstyled">
-      < burgers.forEach(function(burger){ %>
-        <li class="my-1">
-          <a class="show-btn font-weight-bold" data-url="/api/my/burgers/<= burger.id %>" data-method="GET"><= burger.title %></a>
-          <button class="edit-btn btn btn-info btn-sm" data-url="/api/my/burgers/<= burger.id %>/edit" data-method="GET"><i class="fas fa-edit"></i></button>
-          <button class="delete-btn btn btn-danger btn-sm" data-url="/api/my/burgers/<= burger.id %>" data-method="DELETE"><i class="fas fa-trash"></i></button>
-        </li>
-        < }) %>
+  <% if (burgers.length > 0) { %>
+    <div id="burgers-list" class="row align-items-center g-3 text-center">
+      <% burgers.forEach(function(burgers){ %>
+
+        <div class="col-md-4">
+          <div class="card">
+            <img class="burger-preview-img card-img-top mx-auto" src="../assets/burger-placeholder.png" alt="BurgerPreview">
+            <div class="card-body">
+              <h5 class="card-title"><a class="show-btn font-weight-bold" data-url="/api/burgers/<%= burgers.id %>" data-method="GET"><%= burgers.burgerName %></a></h5>
+              <p class="burger-card-description card-text text-truncate"><%= burgers.description %></p>
+            </div>
+          </div>
+        </div>
+
+
+        <% }) %>
     </ul>
 
-    <- include('_partials/pagination') %>
-  < } else { %>
+    <!-- <- include('_partials/pagination') %> -->
+  <% } else { %>
     <div>No Burgers</div>
-  < } %>
-</div> -->
+  <% } %>
+</div>
 
 <!-- <- include('../../_partials/modal') %> -->

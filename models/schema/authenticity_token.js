@@ -1,21 +1,13 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Burger', {
+  return sequelize.define('AuthenticityToken', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    burgerName: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    description: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    ingredients: {
+    token: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
@@ -25,12 +17,12 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'Burgers',
+    tableName: 'AuthenticityTokens',
     schema: 'public',
     timestamps: true,
     indexes: [
       {
-        name: "Burgers_pkey",
+        name: "AuthenticityTokens_pkey",
         unique: true,
         fields: [
           { name: "id" },

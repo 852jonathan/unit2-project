@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt")
 const crypto = require('crypto')
+const multer = require('multer')
 const { body } = require('express-validator')
 
 const { User } = require('../../../models')
@@ -15,7 +16,7 @@ const validation = [
 
 const userSerializer = function(values) {
   const { ...user } = values.dataValues
-  delete user.passwordHash
+  delete user.password
   return user
 }
 
@@ -27,7 +28,7 @@ const apiAuthLogin = async function(req, res) {
   if (!user) return res.status(404).json({ message: `User not found with email: ${email}` })
 
   // Check if password entered is the same as the one in DB
-  const validPassword = await bcrypt.compare(password, user.passwordHash)
+  const validPassword = await bcrypt.compare(password, user.password)
   if (!validPassword) return res.status(401).json({ message: 'Credentials is incorrect' })
 
   // Generate a token and set it as cookie
@@ -35,11 +36,12 @@ const apiAuthLogin = async function(req, res) {
   await user.createAuthenticityToken({ token })
   req.session.token = token
 
-  // Prevents the passwordHash from being sent!
+  // Prevents the password from being sent!
   res.status(200).json(userSerializer(user))
 }
 
 module.exports = [
+  multer().none(),
   validation,
   checkValidation,
   apiAuthLogin
