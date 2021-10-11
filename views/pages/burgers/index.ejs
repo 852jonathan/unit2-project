@@ -8,23 +8,23 @@
 
 <%- contentFor('body') %>
 <div id="burgers-index" class="container my-3 text-center">
-  <h1 class="mb-3 mt-5">CREATE AND RATE BURGERS</h1>
+  <h1 class="mb-3 mt-5">Create and Rate Burgers</h1>
 
   <!-- <- include('_partials/filter') %> -->
 
-  <!-- < if (burgers.length > 0) { %> -->
-    <!-- <ul id="burgers-list" class="list-unstyled"> -->
-      <!-- < burgers.forEach(function(burgers){ %> -->
-        <!-- <li class="my-1"> -->
-          <!-- <a class="show-btn font-weight-bold" data-url="/api/burgers/<= burgers.id %>" data-method="GET"><= burgers.burgerName %></a> -->
-        <!-- </li> -->
-        <!-- < }) %> -->
-    <!-- </ul> -->
+  <% if (burgers.length > 0) { %>
+    <ul id="burgers-list" class="list-unstyled">
+      <% burgers.forEach(function(burgers){ %>
+        <li class="my-1">
+          <a class="show-btn font-weight-bold" data-url="/api/burgers/<%= burgers.id %>" data-method="GET"><%= burgers.burgerName %></a>
+        </li>
+        <% }) %>
+    </ul>
 
     <!-- <- include('_partials/pagination') %> -->
-  <!-- < } else { %> -->
-    <!-- <div>No Burgers</div> -->
-  <!-- < } %> -->
+  <% } else { %>
+    <div>No Burgers</div>
+  <% } %>
 </div>
 
 <!-- <- include('../../_partials/modal') %> -->

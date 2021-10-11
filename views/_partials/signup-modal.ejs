@@ -1,7 +1,16 @@
 <script>
   $(document).ready(function() {
     $signupModal = $('#signup-modal')
+    $loginModal = $('#login-modal')
     $signupForm = $('#signup-form')
+
+
+    $signupModal.on('click', '#login-in-signup', function(e) {
+      e.preventDefault()
+      $signupModal.modal('hide')
+      $loginModal.modal('show')
+    })
+
 
     $signupModal.on('click', '#signup-form-submit', function(e) {
       e.preventDefault()
@@ -44,10 +53,17 @@
 <div id="signup-modal" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title mx-auto">REGISTER</h5>
-        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      <!-- <button type="button" class="btn-close ms-auto mt-2 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-header pt-0">
+        <h5 class="modal-title mx-auto pt-0">REGISTER</h5>
+      </div> -->
+
+
+      <div class="modal-header d-flex justify-content-center ps-5">
+        <h5 class="modal-title pt-0 mx-auto flex-fill">REGISTER</h5>
+        <button type="button" class="btn-close ms-auto ps-0" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
       <div class="modal-body">
         <form id="signup-form" novalidate>
           <div class="form-group mt-3 mb-3">
@@ -64,10 +80,10 @@
       </div>
       <div class="modal-footer py-0">
 
-        <button type="button" id="signup-form-submit" class="btn btn-warning mx-auto"  >REGISTER</button>
+        <button type="button" id="signup-form-submit" class="btn btn-warning mx-auto mt-3"  >REGISTER</button>
 
       </div>
-      <button type="button" id="login-in-signup" class="btn btn-link mt-0" data-target="#login-modal" data-dismiss="modal" data-toggle="modal">
+      <button type="button" id="login-in-signup" class="btn btn-link mt-0" data-target="#login-modal"  data-dismiss="modal" data-toggle="modal">
         Already have an account? Login here! </button>
     </div>
   </div>

@@ -6,6 +6,22 @@
 }
 }
 
+// @media (max-height: 500px) { /** play with the numbers to find the right height **/
+//   .hero-img {
+//     width: max(300px);
+//     height: auto;
+//     opacity: 0.5;
+//   }
+// }
+
+// @media (max-height: 300px) { /** play with the numbers to find the right height **/
+//   .hero-img {
+//     width: max(300px);
+//     height: auto;
+//     display: none;
+//   }
+// }
+
 body {
   background-color: #FFF7D5;
   font-family: 'PT Sans', sans-serif;
@@ -20,7 +36,7 @@ body {
       text-align: center;
       text-decoration: underline;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 28px;
       color: #707070;
     }
   }
@@ -30,12 +46,17 @@ body {
   font-weight: bold;
   font-family: 'PT Sans', sans-serif;
   font-size: 20px;
+
+  #navbar-logo {
+    width: max(100px);
+    height: auto;
+  }
 }
 
 .main-hero-text-wrapper {
   font-family: 'Permanent Marker', sans-serif;
   text-align: center;
-  color: #707070;
+  color: #DCA200;
 }
 
 #burgers-index {
@@ -56,18 +77,45 @@ body {
   color: #707070;
 }
 
+#login-form-submit {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+  color: #707070;
+  background-color: #75EA84;
+}
+
 #signup-modal  {
 
   h5 {
     text-align: center;
     text-decoration: underline;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 25px;
     color: #707070;
   }
 
   .modal-content {
     border: 3px solid #575AB6;
   }
-
 }
+
+#login-modal  {
+
+  h5 {
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 25px;
+    color: #707070;
+  }
+
+  .modal-content {
+    border: 3px solid #575AB6;
+  }
+}
+
+  .hero-img {
+    width: auto;
+    height: max(800px);
+    // display: none;
+  }

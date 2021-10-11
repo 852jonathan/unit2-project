@@ -1,0 +1,35 @@
+<%- contentFor('meta') %>
+<title>My Burgers Index</title>
+
+<%- contentFor('styles') %>
+
+<%- contentFor('scripts') %>
+<!-- <script src="/js/my-burgers/input-control.js" defer></script>
+<script src="/js/my-burgers/index-control.js" defer></script> -->
+
+<%- contentFor('body') %>
+<div id="burgers-index" class="container my-3 text-center">
+  <h1 class="mb-3 mt-5">My Burgers</h1>
+
+  <!-- <- include('_partials/filter') %>
+
+  <button id="new-btn" class="btn btn-success btn-sm" data-url="/api/my/burgers/new" data-method="GET">New</button>
+
+  < if (burgers.length > 0) { %>
+    <ul id="burgers-list" class="list-unstyled">
+      < burgers.forEach(function(burger){ %>
+        <li class="my-1">
+          <a class="show-btn font-weight-bold" data-url="/api/my/burgers/<= burger.id %>" data-method="GET"><= burger.title %></a>
+          <button class="edit-btn btn btn-info btn-sm" data-url="/api/my/burgers/<= burger.id %>/edit" data-method="GET"><i class="fas fa-edit"></i></button>
+          <button class="delete-btn btn btn-danger btn-sm" data-url="/api/my/burgers/<= burger.id %>" data-method="DELETE"><i class="fas fa-trash"></i></button>
+        </li>
+        < }) %>
+    </ul>
+
+    <- include('_partials/pagination') %>
+  < } else { %>
+    <div>No Burgers</div>
+  < } %>
+</div> -->
+
+<!-- <- include('../../_partials/modal') %> -->
