@@ -9,8 +9,8 @@ router.delete('/auth/logout', require('../controllers/api/auth/logout'))
 // Public Burgers
 router.get('/burgers', require('../controllers/api/burgers/show'))
 
-// // Private Burgers
-// router.post('/my/burgers', require('../controllers/api/my-burgers/create'))
+// Private Burgers
+router.post('/my/burgers', require('../controllers/api/my-burgers/create'))
 // router.get('/my/burgers/new', require('../controllers/api/my-burgers/new'))
 // router.get('/my/burgers/:id', require('../controllers/api/my-burgers/show'))
 // router.delete('/my/burgers/:id', require('../controllers/api/my-burgers/destroy'))

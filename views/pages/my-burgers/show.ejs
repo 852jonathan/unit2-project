@@ -7,10 +7,10 @@
 <script src="/js/ingredients-selector.js" defer></script>
 
 <%- contentFor('body') %>
-<div id="new-my-burgers" class="container my-3 ">
-  <h1 class="burgers-title-text mb-3 mt-5 text-center">Create Your Burger</h1>
+<div id="show-my-burgers" class="container my-3 ">
+  <h1 class="burgers-title-text mb-3 mt-5 text-center">Show Your Burger</h1>
 
-  <h2>New Burger</h2>
+  <h2>Your Burger</h2>
 
   <div class="row">
     <div class="col-6">
@@ -32,7 +32,10 @@
           <label for="description" class="form-label">Burger Description</label>
           <input type="name" class="form-control" id="description" name="description">
           <div id="description-help" class="form-text">Give a short description for your burger!</div>
-        </div>
+
+
+
+        <!-- </div>
         <div>
           <label for="ingredients" class="form-label mb-0">Ingredients</label>
           <div id="ingredients-help" class="form-text mb-3">Choose your ingredients! (Max 10)
@@ -168,10 +171,10 @@
           <label class="form-check-label" for="lettuce-bottom-bun">
             Lettuce Leaf
           </label>
-        </div>
+        </div> -->
 
         <div>
-        <button id="new-burger-btn" type="submit" class="btn mt-3">CREATE!</button>
+        <button id="update-burger-btn" type="submit" class="btn mt-3">UPDATE!</button>
       </form>
     </div>
   </div>

@@ -21,7 +21,9 @@
       axios({
         method: 'POST',
         url: '/api/auth/signup',
-        data: formData
+        data: formData,
+        withCredentials: true
+
       }).then(function() {
       }).catch(function(err) {
         switch (err.response.status) {

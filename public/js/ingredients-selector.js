@@ -2,6 +2,7 @@ $(document).ready(function() {
   const $topIngredient = $("#top-ingredient")
   const $midIngredient = $("#mid-ingredient")
   const $botIngredient = $("#bot-ingredient")
+  const $ingredientForm = $('#ingredient-form')
 
   const ingredients = {
     topBun: [],
@@ -29,5 +30,44 @@ $(document).ready(function() {
         ingredients.middle.push(ingredient)
       }
     }
+  })
+
+  $ingredientForm.on('submit', function(e) {
+    e.preventDefault()
+    const formData = new FormData($ingredientForm[0])
+
+    formData.append('ingredients', JSON.stringify(ingredients))
+
+    axios({
+      method: 'POST',
+      url: '/api/my/burgers',
+      data: formData,
+      withCredentials: true
+    }).then(function(resp) {
+      console.log(resp.data)
+
+    }).catch(function(err) {
+      switch(err.response.status) {
+        case 406:{
+          const { response: { data: { errors } }} = err
+
+          $ingredientForm.find('.invalid-feedback').empty()
+          $ingredientForm.find('.is-invalid').removeClass('is-invalid')
+
+          errors.forEach(function(error) {
+            const { param: fieldName, msg } = error
+            const $input = $ingredientForm.find(`[name="${fieldName}"]`)
+            const $invalidFeedback = $input.siblings('.invalid-feedback')
+            $input.addClass('is-invalid')
+            $invalidFeedback.text(msg)
+          })
+          break
+        }
+        default: {
+          console.log(err.response)
+          break
+        }
+      }
+    })
   })
 })
