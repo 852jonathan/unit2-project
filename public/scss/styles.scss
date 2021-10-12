@@ -165,3 +165,29 @@ body {
   background-color: #4BD385;
   color: white
 }
+
+
+// Create Your Burger
+
+#top-ingredient {
+  // width: min(300px);
+  z-index: 100;
+  // position: absolute;
+}
+
+#mid-ingredient {
+  width: max(255px);
+
+  .moved {
+
+    z-index: 50;
+    // position: relative;
+    transform: translate(10px,10px);
+
+  }
+}
+
+#bot-ingredient {
+  // width: min(300px);
+  z-index: 1;
+}

@@ -1,24 +1,33 @@
-const $ingredientForm = $("#ingredient-form")
-const $selectedIngredient = $(".selected-ingredient")
-const $formCheckInput = $(".form-check-input")
+$(document).ready(function() {
+  const $topIngredient = $("#top-ingredient")
+  const $midIngredient = $("#mid-ingredient")
+  const $botIngredient = $("#bot-ingredient")
 
-const ingredientList = []
+  const ingredients = {
+    topBun: [],
+    middle: [],
+    botBun: []
+  }
 
+  $(".form-check").on('change', '.form-check-input', function(e) {
+    const $formCheckInput = $(e.target)
+    const ingredient = $formCheckInput.val()
+    const type = $formCheckInput.data('type')
 
-// $ingredientForm.on("change", function() {
-  $(".form-check").on('change', '.form-check-input', function() {
-    if(this.checked) {
-      $selectedIngredient.appendTo(`<p>`$formCheckInput.value`</p>`)
+    if (type === 'topBun') {
+      ingredients[type] = [ingredient]
+      $topIngredient.html(`<img src='../../assets/${ingredient}.png'>`)
+    } else if (type === 'botBun') {
+      ingredients[type] = [ingredient]
+      $botIngredient.html(`<img src='../../assets/${ingredient}.png'>`)
+    } else {
+      if(ingredients.middle.includes(ingredient)) {
+        $(`img[src='../../assets/${ingredient}.png']`).remove()
+        ingredients.middle = ingredients.middle.filter((i) => i !== ingredient)
+      } else {
+        $(`<img src='../../assets/${ingredient}.png'> class="moved"`).appendTo($midIngredient)
+        ingredients.middle.push(ingredient)
+      }
     }
   })
-
-  // $(".form-check").on('change', '.form-check-input', function() {
-  //   if(this.unchecked) {
-  //     $selectedIngredient.prepend("<p>Added 1</p>")
-  //   }
-  // })
-
-// })
-
-// $(".selected-ingredient").htm  l( $("input:checked").val() + " is checked!")
-// $("input[type=checkbox]").on("change",).val() + " is checked!"
+})

@@ -12,167 +12,168 @@
 
   <h2>New Burger</h2>
 
-  <div class="col-6">
-    <div class="selected-ingredient">
-
-    </div>
-
-  </div>
-
-  <div id="ingredient-form" class="col-6 ms-auto">
-  <form>
-    <div class="mb-3">
-      <label for="burgerName" class="form-label">Burger Name</label>
-      <input type="name" class="form-control" id="burgerName" name="burgerName">
-      <div id="burgerName-help" class="form-text">Name your burger!</div>
-    </div>
-    <div class="mb-3">
-      <label for="description" class="form-label">Burger Description</label>
-      <input type="name" class="form-control" id="description" name="description">
-      <div id="description-help" class="form-text">Give a short description for your burger!</div>
-    </div>
-    <div>
-      <label for="ingredients" class="form-label mb-0">Ingredients</label>
-      <div id="ingredients-help" class="form-text mb-3">Choose your ingredients! (Max 10)
+  <div class="row">
+    <div class="col-6">
+      <div id="selected-ingredient" >
+        <div id="top-ingredient" class="text-center"></div>
+        <div id="mid-ingredient" class="d-flex flex-column mx-auto"></div>
+        <div id="bot-ingredient" class="text-center"></div>
       </div>
+
     </div>
 
-    <div id="top-bun-help" class="form-text my-3">Buns (Top)</div>
+    <div id="ingredient-form" class="col-6 ms-auto">
+      <form>
+        <div class="mb-3">
+          <label for="burgerName" class="form-label">Burger Name</label>
+          <input type="name" class="form-control" id="burgerName" name="burgerName">
+          <div id="burgerName-help" class="form-text">Name your burger!</div>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Burger Description</label>
+          <input type="name" class="form-control" id="description" name="description">
+          <div id="description-help" class="form-text">Give a short description for your burger!</div>
+        </div>
+        <div>
+          <label for="ingredients" class="form-label mb-0">Ingredients</label>
+          <div id="ingredients-help" class="form-text mb-3">Choose your ingredients! (Max 10)
+          </div>
+        </div>
 
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="top-bun" id="thick-top-bun" value="thick-top-bun" checked>
-      <label class="form-check-label" for="thick-top-bun">
-        Thick Top Bun
-      </label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="top-bun" id="thin-top-bun" value="thin-top-bun">
-      <label class="form-check-label" for="thin-top-bun">
-        Thin Top Bun
-      </label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="top-bun" id="thick-squid-top-bun" value="thick-squid-top-bun">
-      <label class="form-check-label" for="thick-squid-top-bun">
-        Thick Squid Ink Top Bun
-      </label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="top-bun" id="thin-squid-top-bun" value="thin-squid-top-bun">
-      <label class="form-check-label" for="thin-squid-top-bun">
-        Thin Squid Ink Top Bun
-      </label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="top-bun" id="lettuce-top-bun" value="lettuce-top-bun">
-      <label class="form-check-label" for="lettuce-top-bun">
-        Lettuce Leaf
-      </label>
-    </div>
+        <div id="top-bun-help" class="form-text my-3">Buns (Top)</div>
 
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="top-bun" id="thick-top-bun" value="thick-top-bun" data-type="topBun">
+          <label class="form-check-label" for="thick-top-bun">
+            Thick Top Bun
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="top-bun" id="thin-top-bun" value="thin-top-bun" data-type="topBun">
+          <label class="form-check-label" for="thin-top-bun">
+            Thin Top Bun
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="top-bun" id="thick-squid-top-bun" value="thick-squid-top-bun" data-type="topBun">
+          <label class="form-check-label" for="thick-squid-top-bun">
+            Thick Squid Ink Top Bun
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="top-bun" id="thin-squid-top-bun" value="thin-squid-top-bun" data-type="topBun">
+          <label class="form-check-label" for="thin-squid-top-bun">
+            Thin Squid Ink Top Bun
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="top-bun" id="lettuce-top-bun" value="lettuce-top-bun" data-type="topBun">
+          <label class="form-check-label" for="lettuce-top-bun">
+            Lettuce Leaf
+          </label>
+        </div>
 
+        <div id="veggie-help" class="form-text my-3">Vegetables</div>
 
-    <div id="veggie-help" class="form-text my-3">Vegetables</div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="lettuce" value="lettuce">
+          <label class="form-check-label" for="lettuce">Lettuce</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="tomato" value="tomato">
+          <label class="form-check-label" for="tomato">Tomato</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="mushroom" value="mushroom">
+          <label class="form-check-label" for="mushroom">Mushroom</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="pickles" value="pickles">
+          <label class="form-check-label" for="pickles">Pickles</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="yellow-onion" value="yellow-onion">
+          <label class="form-check-label" for="yellow-onion">Yellow Onions</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="purple-onion" value="purple-onion">
+          <label class="form-check-label" for="purple-onion">Purple Onions</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="red-pepper" value="red-pepper">
+          <label class="form-check-label" for="red-pepper">Red Pepper</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="rocket-leaf" value="rocket-leaf">
+          <label class="form-check-label" for="rocket-leaf">Rocket Leaf</label>
+        </div>
 
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="lettuce" value="lettuce">
-      <label class="form-check-label" for="lettuce">Lettuce</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="tomato" value="tomato">
-      <label class="form-check-label" for="tomato">Tomato</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="mushroom" value="mushroom">
-      <label class="form-check-label" for="mushroom">Mushroom</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="pickles" value="pickles">
-      <label class="form-check-label" for="pickles">Pickles</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="yellow-onion" value="yellow-onion">
-      <label class="form-check-label" for="yellow-onion">Yellow Onions</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="purple-onion" value="purple-onion">
-      <label class="form-check-label" for="purple-onion">Purple Onions</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="red-pepper" value="red-pepper">
-      <label class="form-check-label" for="red-pepper">Red Pepper</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="rocket-leaf" value="rocket-leaf">
-      <label class="form-check-label" for="rocket-leaf">Rocket Leaf</label>
-    </div>
+        <div id="meat-help" class="form-text my-3">Meats</div>
 
-    <div id="meat-help" class="form-text my-3">Meats</div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="thin-grilled-patty" value="thin-grilled-patty">
+          <label class="form-check-label" for="thin-grilled-patty">Thin Grilled Beef Patty</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="thick-grilled-patty" value="thick-grilled-patty">
+          <label class="form-check-label" for="thick-grilled-patty">Thick Grilled Beef Patty</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="back-bacon" value="back-bacon">
+          <label class="form-check-label" for="back-bacon">Back Bacon</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="streaky-bacon" value="streaky-bacon">
+          <label class="form-check-label" for="streaky-bacon">Streaky Bacon</label>
+        </div>
 
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="thin-grilled-patty" value="thin-grilled-patty" checked>
-      <label class="form-check-label" for="thin-grilled-patty">Thin Grilled Beef Patty</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="thick-grilled-patty" value="thick-grilled-patty">
-      <label class="form-check-label" for="thick-grilled-patty">Thick Grilled Beef Patty</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="back-bacon" value="back-bacon">
-      <label class="form-check-label" for="back-bacon">Back Bacon</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="streaky-bacon" value="streaky-bacon">
-      <label class="form-check-label" for="streaky-bacon">Streaky Bacon</label>
-    </div>
+        <div id="others-help" class="form-text my-3">Others</div>
 
-    <div id="others-help" class="form-text my-3">Others</div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="hashbrown" value="hashbrown">
+          <label class="form-check-label" for="hashbrown">Hash Brown</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="ketchup" value="ketchup">
+          <label class="form-check-label" for="ketchup">Ketchup</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="egg" value="egg">
+          <label class="form-check-label" for="egg">Egg</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="square-cheese" value="square-cheese">
+          <label class="form-check-label" for="square-cheese">Square Cheese</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="swiss-cheese" value="swiss-cheese">
+          <label class="form-check-label" for="swiss-cheese">Swiss Cheese</label>
+        </div>
 
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="hashbrown" value="hashbrown">
-      <label class="form-check-label" for="hashbrown">Hash Brown</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="ketchup" value="ketchup">
-      <label class="form-check-label" for="ketchup">Ketchup</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="egg" value="egg">
-      <label class="form-check-label" for="egg">Egg</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="square-cheese" value="square-cheese">
-      <label class="form-check-label" for="square-cheese">Square Cheese</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="swiss-cheese" value="swiss-cheese">
-      <label class="form-check-label" for="swiss-cheese">Swiss Cheese</label>
-    </div>
+        <div id="bottom-bun-help" class="form-text my-3">Buns (Bottom)</div>
 
-    <div id="bottom-bun-help" class="form-text my-3">Buns (Bottom)</div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="bottom-bun" id="bottom-bun" value="bottom-bun" data-type="botBun">
+          <label class="form-check-label" for="bottom-bun">
+            Bottom Bun
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="bottom-bun" id="squid-bottom-bun" value="squid-bottom-bun" data-type="botBun">
+          <label class="form-check-label" for="squid-bottom-bun">
+            Squid Ink Bottom Bun
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="bottom-bun" id="lettuce-bottom-bun" value="lettuce-bottom-bun" data-type="botBun">
+          <label class="form-check-label" for="lettuce-bottom-bun">
+            Lettuce Leaf
+          </label>
+        </div>
 
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="bottom-bun" id="bottom-bun" value="bottom-bun" checked>
-      <label class="form-check-label" for="bottom-bun">
-        Bottom Bun
-      </label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="bottom-bun" id="squid-bottom-bun" value="squid-bottom-bun">
-      <label class="form-check-label" for="squid-bottom-bun">
-        Squid Ink Bottom Bun
-      </label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="bottom-bun" id="lettuce-bottom-bun" value="lettuce-bottom-bun">
-      <label class="form-check-label" for="lettuce-bottom-bun">
-        Lettuce Leaf
-      </label>
-    </div>
-
-    <div>
+        <div>
         <button id="new-burger-btn" type="submit" class="btn mt-3">CREATE!</button>
       </form>
     </div>
   </div>
+</div>
