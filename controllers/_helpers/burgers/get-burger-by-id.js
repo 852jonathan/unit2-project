@@ -5,10 +5,10 @@ module.exports = function(format) {
     const { params: { id } } = req
     const burger = await Burger.findOne({
       where: { id: Number(id) || 0 },
-      include: {
-        association: Burger.Rating
-      },
-      order: [['Rating', 'createdAt', 'DESC']]
+      // include: {
+        // association: Burger.Rating
+      // },
+      // order: [['Rating', 'createdAt', 'DESC']]
     })
 
     if (!burger) {

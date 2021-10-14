@@ -1,0 +1,115 @@
+    <%- contentFor('meta') %>
+    <title>Update Your Burger</title>
+
+    <%- contentFor('styles') %>
+
+    <%- contentFor('scripts') %>
+    <script src="/js/ingredients-selector.js" defer></script>
+    <script>
+      $commentBtn = $("comment-btn")
+      const btn = document.querySelector("button");
+      const post = document.querySelector(".post");
+      const widget = document.querySelector(".star-widget");
+      const editBtn = document.querySelector(".edit");
+      btn.onclick = ()=>{
+        widget.style.display = "none";
+        post.style.display = "block";
+        editBtn.onclick = ()=>{
+          widget.style.display = "block";
+          post.style.display = "none";
+        }
+        return false;
+      }
+    </script>
+
+    <%- contentFor('body') %>
+    <div id="show-burger" class="container my-3 ">
+      <h1 class="burgers-title-text mb-3 mt-5 text-center">Show A Burger</h1>
+
+
+
+
+      <div class="row">
+
+          <div class="col-6">
+            <div id="selected-ingredient" >
+              <div id="top-ingredient" class="text-center">
+                <% ingredients.topBun.forEach(function(ingredient) { %>
+                  <img src='/assets/<%= ingredient %>.png'>
+                <% }) %>
+              </div>
+              <div id="mid-ingredient" class="d-flex flex-column mx-auto">
+              <% ingredients.middle.forEach(function(ingredient) { %>
+                <img src='/assets/<%= ingredient %>.png'>
+              <% }) %>
+            </div>
+              <div id="bot-ingredient" class="text-center">
+                <% ingredients.botBun.forEach(function(ingredient) { %>
+                  <img src='/assets/<%= ingredient %>.png'>
+                <% }) %>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 ms-auto">
+            <div>
+              <div class="mb-3">
+                <h2 class="mb-3"><%= burger.burgerName %></h2>
+                <h3 class="mb-3"><%= burger.description%></h3>
+              </div>
+              <div>
+                <h4 class="mb-3">Ingredients</h4>
+
+              </div>
+              <div id="top-ingredient" class="text-center">
+                <% ingredients.topBun.forEach(function(ingredient) { %>
+                  <div ><%= ingredient %></div>
+                <% }) %>
+              </div>
+              <div id="mid-ingredient" class="d-flex flex-column mx-auto">
+              <% ingredients.middle.forEach(function(ingredient) { %>
+                <div ><%= ingredient %></div>
+              <% }) %>
+            </div>
+              <div id="bot-ingredient" class="text-center">
+                <% ingredients.botBun.forEach(function(ingredient) { %>
+                  <div ><%= ingredient %></div>
+                <% }) %>
+              </div>
+
+              <div>
+                <% if (currentUser) { %>
+                  <h2>RATING HERE</h2>
+                  <div class="star-widget">
+                    <input type="radio" name="rate" id="rate-5">
+                    <label for="rate-5" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-4">
+                    <label for="rate-4" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-3">
+                    <label for="rate-3" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-2">
+                    <label for="rate-2" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-1">
+                    <label for="rate-1" class="fas fa-star"></label>
+
+                    <form action="#">
+                      <div class="textarea mt-3">
+                        <textarea placeholder="Place a comment here"></textarea>
+                      </div>
+                      <div class="comment-btn mx-auto mt-3">
+                        <button type="submit" class="btn-primary">Comment</button>
+                      </div>
+                    </form>
+                  </div>
+                  <form id="comment-form">
+
+                  <label for="comment" class="form-label">Comment</label>
+                  <input type="name" class="form-control" id="comment" name="comment" value="<%= burger.comment %>">
+                  <div id="comment-help" class="form-text">Place a short comment here</div>
+                </div>
+                <% } %>
+              </div>
+
+            </div>
+          </div>
+      </div>
+    </div>

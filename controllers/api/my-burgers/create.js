@@ -36,7 +36,8 @@ const apiMyBurgersCreate = async function(req, res) {
   newBurger.setUser(currentUser)
 
   res.json({ message: 'created'})
-  // res.render('api/my-burgers/show', { burger: newBurger, layout: false })
+  // go back to Show My Burgers index
+  res.render('pages/my-burgers/index', { burger: newBurger })
 }
 
 module.exports = [

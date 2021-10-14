@@ -1,0 +1,193 @@
+<%- contentFor('meta') %>
+<title>Update Your Burger</title>
+
+<%- contentFor('styles') %>
+
+<%- contentFor('scripts') %>
+<script src="/js/ingredients-selector.js" defer></script>
+
+<%- contentFor('body') %>
+<div id="edit-my-burgers" class="container my-3 ">
+  <h1 class="burgers-title-text mb-3 mt-5 text-center">Update Your Burger</h1>
+
+  <h2>Your Burger</h2>
+
+  <div class="row">
+    <div class="col-6">
+      <div id="selected-ingredient" >
+        <div id="top-ingredient" class="text-center">
+          <% ingredients.topBun.forEach(function(ingredient) { %>
+            <img src='/assets/<%= ingredient %>.png'>
+          <% }) %>
+        </div>
+        <div id="mid-ingredient" class="d-flex flex-column mx-auto">
+        <% ingredients.middle.forEach(function(ingredient) { %>
+          <img src='/assets/<%= ingredient %>.png'>
+        <% }) %>
+      </div>
+        <div id="bot-ingredient" class="text-center">
+          <% ingredients.botBun.forEach(function(ingredient) { %>
+            <img src='/assets/<%= ingredient %>.png'>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 ms-auto">
+      <form id="ingredient-form">
+        <div class="mb-3">
+          <label for="burgerName" class="form-label">Burger Name</label>
+          <input type="name" class="form-control" id="burgerName" name="burgerName" value="<%= burger.burgerName %>">
+          <div id="burgerName-help" class="form-text">Name your burger!</div>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Burger Description</label>
+          <input type="name" class="form-control" id="description" name="description" value="<%= burger.description %>">
+          <div id="description-help" class="form-text">Give a short description for your burger!</div>
+
+
+
+        </div>
+        <div>
+          <label for="ingredients" class="form-label mb-0">Ingredients</label>
+          <div id="ingredients-help" class="form-text mb-3">Choose your ingredients! (Max 10)
+          </div>
+        </div>
+
+        <div id="top-bun-help" class="form-text my-3">Buns (Top)</div>
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="top-bun" id="thick-top-bun" value="thick-top-bun" data-type="topBun" disabled <%= ingredients.topBun.includes('thick-top-bun') ? 'checked' : '' %>>
+          <label class="form-check-label" for="thick-top-bun">
+            Thick Top Bun
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="top-bun" id="thin-top-bun" value="thin-top-bun" data-type="topBun" disabled <%= ingredients.topBun.includes('thin-top-bun') ? 'checked' : '' %>>
+          <label class="form-check-label" for="thin-top-bun">
+            Thin Top Bun
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="top-bun" id="thick-squid-top-bun" value="thick-squid-top-bun" data-type="topBun" disabled <%= ingredients.topBun.includes('thick-squid-top-bun') ? 'checked' : '' %>>
+          <label class="form-check-label" for="thick-squid-top-bun">
+            Thick Squid Ink Top Bun
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="top-bun" id="thin-squid-top-bun" value="thin-squid-top-bun" data-type="topBun" disabled <%= ingredients.topBun.includes('thin-squid-top-bun') ? 'checked' : '' %>>
+          <label class="form-check-label" for="thin-squid-top-bun">
+            Thin Squid Ink Top Bun
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="top-bun" id="lettuce-top-bun" value="lettuce-top-bun" data-type="topBun" disabled <%= ingredients.topBun.includes('lettuce-top-bun') ? 'checked' : '' %>>
+          <label class="form-check-label" for="lettuce-top-bun">
+            Lettuce Leaf
+          </label>
+        </div>
+
+        <div id="veggie-help" class="form-text my-3">Vegetables</div>
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="lettuce" value="lettuce" disabled <%= ingredients.middle.includes('lettuce') ? 'checked' : '' %>>
+          <label class="form-check-label" for="lettuce">Lettuce</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="tomato" value="tomato" disabled <%= ingredients.middle.includes('tomato') ? 'checked' : '' %>>
+          <label class="form-check-label" for="tomato">Tomato</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="mushroom" value="mushroom" disabled <%= ingredients.middle.includes('mushroom') ? 'checked' : '' %>>
+          <label class="form-check-label" for="mushroom">Mushroom</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="pickles" value="pickles" disabled <%= ingredients.middle.includes('pickles') ? 'checked' : '' %>>
+          <label class="form-check-label" for="pickles">Pickles</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="yellow-onion" value="yellow-onion" disabled <%= ingredients.middle.includes('yellow-onion') ? 'checked' : '' %>>
+          <label class="form-check-label" for="yellow-onion">Yellow Onions</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="purple-onion" value="purple-onion" disabled <%= ingredients.middle.includes('purple-onion') ? 'checked' : '' %>>
+          <label class="form-check-label" for="purple-onion">Purple Onions</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="red-pepper" value="red-pepper" disabled <%= ingredients.middle.includes('red-pepper') ? 'checked' : '' %>>
+          <label class="form-check-label" for="red-pepper">Red Pepper</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="rocket-leaf" value="rocket-leaf" disabled <%= ingredients.middle.includes('rocket-leaf') ? 'checked' : '' %>>
+          <label class="form-check-label" for="rocket-leaf">Rocket Leaf</label>
+        </div>
+
+        <div id="meat-help" class="form-text my-3">Meats</div>
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="thin-grilled-patty" value="thin-grilled-patty" disabled <%= ingredients.middle.includes('thin-grilled-patty') ? 'checked' : '' %>>
+          <label class="form-check-label" for="thin-grilled-patty">Thin Grilled Beef Patty</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="thick-grilled-patty" value="thick-grilled-patty" disabled <%= ingredients.middle.includes("thick-grilled-patty") ? 'checked' : '' %>>
+          <label class="form-check-label" for="thick-grilled-patty">Thick Grilled Beef Patty</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="back-bacon" value="back-bacon" disabled <%= ingredients.middle.includes("back-bacon") ? 'checked' : '' %>>
+          <label class="form-check-label" for="back-bacon">Back Bacon</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="streaky-bacon" value="streaky-bacon" disabled <%= ingredients.middle.includes("streaky-bacon") ? 'checked' : '' %>>
+          <label class="form-check-label" for="streaky-bacon">Streaky Bacon</label>
+        </div>
+
+        <div id="others-help" class="form-text my-3">Others</div>
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="hashbrown" value="hashbrown" disabled <%= ingredients.middle.includes("hashbrown") ? 'checked' : '' %>>
+          <label class="form-check-label" for="hashbrown">Hash Brown</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="ketchup" value="ketchup" disabled <%= ingredients.middle.includes("ketchup") ? 'checked' : '' %>>
+          <label class="form-check-label" for="ketchup">Ketchup</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="egg" value="egg" disabled <%= ingredients.middle.includes("egg") ? 'checked' : '' %>>
+          <label class="form-check-label" for="egg">Egg</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="square-cheese" value="square-cheese" disabled <%= ingredients.middle.includes("square-cheese") ? 'checked' : '' %>>
+          <label class="form-check-label" for="square-cheese">Square Cheese</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="swiss-cheese" value="swiss-cheese" disabled <%= ingredients.middle.includes("swiss-cheese") ? 'checked' : '' %>>
+          <label class="form-check-label" for="swiss-cheese">Swiss Cheese</label>
+        </div>
+
+        <div id="bottom-bun-help" class="form-text my-3">Buns (Bottom)</div>
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="bottom-bun" id="bottom-bun" value="bottom-bun" data-type="botBun" disabled <%= ingredients.botBun.includes("bottom-bun") ? 'checked' : '' %>>
+          <label class="form-check-label" for="bottom-bun">
+            Bottom Bun
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="bottom-bun" id="squid-bottom-bun" value="squid-bottom-bun" data-type="botBun" disabled <%= ingredients.botBun.includes("squid-bottom-bun") ? 'checked' : '' %>>
+          <label class="form-check-label" for="squid-bottom-bun">
+            Squid Ink Bottom Bun
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="bottom-bun" id="lettuce-bottom-bun" value="lettuce-bottom-bun" data-type="botBun" disabled <%= ingredients.botBun.includes("lettuce-bottom-bun") ? 'checked' : '' %>>
+          <label class="form-check-label" for="lettuce-bottom-bun">
+            Lettuce Leaf
+          </label>
+        </div>
+
+        <div>
+        <button id="update-burger-btn" type="submit" class="btn mt-3">UPDATE!</button>
+      </form>
+    </div>
+  </div>
+</div>

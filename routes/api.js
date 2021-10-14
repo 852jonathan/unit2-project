@@ -7,7 +7,7 @@ router.post('/auth/login', require('../controllers/api/auth/login'))
 router.delete('/auth/logout', require('../controllers/api/auth/logout'))
 
 // Public Burgers
-router.get('/burgers', require('../controllers/api/burgers/show'))
+// router.get('/burgers', require('../controllers/api/burgers/show'))
 
 // Private Burgers
 router.post('/my/burgers', require('../controllers/api/my-burgers/create'))

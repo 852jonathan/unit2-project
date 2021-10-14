@@ -18,9 +18,9 @@
 
   <div class="col-md-4">
     <div class="card">
-      <img class="burger-preview-img card-img-top mx-auto" src="assets/burger-placeholder.png" alt="BurgerPreview">
+      <img class="burger-preview-img card-img-top mx-auto" src="/assets/burger-placeholder.png" alt="BurgerPreview">
       <div class="card-body">
-        <h5 class="card-title text-truncate"><a class="show-btn font-weight-bold" data-url="/api/burgers/<%= burgers.id %>" data-method="GET"><%= burgers.burgerName %></a></h5>
+        <h5 class="card-title text-truncate"><a class="show-btn font-weight-bold" href="/burgers/<%= burgers.id %>"><%= burgers.burgerName %></a></h5>
         <p class="burger-card-description card-text text-truncate"><%= burgers.description %></p>
       </div>
     </div>
