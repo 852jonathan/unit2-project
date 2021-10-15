@@ -3,9 +3,9 @@ const { Burger, Rating, User } = require('../../../models')
 
 const apiMyBurgersDestroy = async function(req, res) {
   const { locals: { currentBurger } } = res
-  await currentBurger.setBurger.ingredients([])
   await currentBurger.destroy()
-  await Burger.destroy({ where: { BurgerId: null } })
+  // Below line will be used when we are doing Ratings
+  // await Rating.destroy({ where: { BurgerId: currentBurger.id } })
   res.status(204).json()
 }
 

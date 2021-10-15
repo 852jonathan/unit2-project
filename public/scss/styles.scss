@@ -1,37 +1,39 @@
 @import 'node_modules/bootstrap/scss/bootstrap';
 
 @media (min-width: 992px) { //when screen size is at least 992px)
-
+  #selected-ingredient img {
+    width: 250px;
+    position: absolute;
+  }
 }
 
-@media (max-width: 500px) { /** play with the numbers to find the right height **/
+@media (max-width: 500px) {
   .hero-img {
-    // width: max(300px);
-    // height: auto;
-    // transform: translate(-150px, 100px);
+
     opacity: 0.5;
     z-index: 1;
+    overflow: hidden;
+
   }
 
   #home-register {
     z-index: 50;
   }
 
+  #selected-ingredient img {
+    width: 180px;
+    position: absolute;
+  }
+
 }
 
 
-@media (max-width: 700px) { /** play with the numbers to find the right height **/
+@media (max-width: 770px) {
   #homepage-logo {
     display:none;
   }
 }
-// @media (max-height: 300px) { /** play with the numbers to find the right height **/
-//   .hero-img {
-//     width: max(300px);
-//     height: auto;
-//     display: none;
-//   }
-// }
+
 
 // General Settings
 
@@ -102,6 +104,7 @@ body {
     width: auto;
     height: max(400px);
     // display: none;
+    overflow: hidden;
   }
 }
 
@@ -192,6 +195,18 @@ body {
   color: white
 }
 
+//Show your burger / Edit name & description
+
+.burger-title button {
+  background-color: orange;
+  border: none;
+}
+
+.burger-title button:hover {
+  background-color: rgb(235, 204, 147);
+  border: none;
+}
+
 // Create Your Burger
 
 #top-ingredient {
@@ -226,12 +241,12 @@ body {
 //=====================
 //Rating
 
-  .hide:not(:checked) ~ label:hover,
-  .hide:not(:checked) ~ label:hover ~ label{
+  .star:not(:checked) ~ label:hover,
+  .star:not(:checked) ~ label:hover ~ label{
     color: #fd4;
   }
 
-  .hide:checked ~ label{
+  .star:checked ~ label{
     color: #fd4;
   }
 

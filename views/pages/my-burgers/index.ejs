@@ -4,8 +4,20 @@
 <%- contentFor('styles') %>
 
 <%- contentFor('scripts') %>
-<!-- <script src="/js/my-burgers/input-control.js" defer></script> -->
-<!-- <script src="/js/index-control.js" defer></script> -->
+<script>
+  $(document).ready(() => {
+    const $imgs = $('#selected-ingredient img')
+    let sumHeight = 0
+    let zIndex = 99
+
+    $imgs.each((i) => {
+      const $elem = $imgs.eq(i)
+      $elem.css('top', sumHeight).css('z-index', zIndex)
+      sumHeight += (($elem.height() / 4)*1.2)
+      zIndex -= 1
+    })
+  })
+  </script>
 
 <%- contentFor('body') %>
 <div id="burgers-index" class="container my-3 text-center">
@@ -22,22 +34,22 @@
 
         <div class="col-md-4">
           <div class="card">
-            <!-- <img class="burger-preview-img card-img-top mx-auto edit-btn" src="/assets/burger-placeholder.png" alt="BurgerPreview"> -->
             <img class="burger-preview-img card-img-top mx-auto edit-btn" src="/assets/burger-placeholder.png" alt="BurgerPreview">
-            <div id="top-ingredient" class="text-center">
-              <% ingredients.topBun.forEach(function(ingredient) { %>
-                <img src='/assets/<%= ingredient %>.png'>
-              <% }) %>
+
+            <div id="top-ingredient" class="d-flex flex-column w-100 align-items-center">
+              <!-- < ingredients.topBun.forEach(function(ingredient) { %>
+                <img src='/assets/<= ingredient %>.png'>
+              < }) %>
             </div>
-            <div id="mid-ingredient" class="d-flex flex-column mx-auto">
-            <% ingredients.middle.forEach(function(ingredient) { %>
-              <img src='/assets/<%= ingredient %>.png'>
-            <% }) %>
+            <div id="mid-ingredient" class="d-flex flex-column w-100 align-items-center">
+            < ingredients.middle.forEach(function(ingredient) { %>
+              <img src='/assets/<= ingredient %>.png'>
+            < }) %>
           </div>
-            <div id="bot-ingredient" class="text-center">
-              <% ingredients.botBun.forEach(function(ingredient) { %>
-                <img src='/assets/<%= ingredient %>.png'>
-              <% }) %>
+            <div id="bot-ingredient" class="d-flex flex-column w-100 align-items-center">
+              < ingredients.botBun.forEach(function(ingredient) { %>
+                <img src='/assets/<= ingredient %>.png'>
+              < }) %> -->
             </div>
             <div class="card-body">
               <h5 class="card-title text-truncate"><a href="/my/burgers/<%= burgers.id %>" class="edit-btn font-weight-bold"><%= burgers.burgerName %></a></h5>

@@ -2,9 +2,28 @@
 <title>Update Your Burger</title>
 
 <%- contentFor('styles') %>
+<style>
+  #selected-ingredient img {
+    width: 200px;
+    position: absolute;
+  }
+</style>
 
 <%- contentFor('scripts') %>
 <script src="/js/form-control.js" defer></script>
+<script>
+$(document).ready(() => {
+  const $imgs = $('#selected-ingredient img')
+  let sumHeight = 0
+  let zIndex = 99
+  $imgs.each((i) => {
+    const $elem = $imgs.eq(i)
+    $elem.css('top', sumHeight).css('z-index', zIndex)
+    sumHeight += (($elem.height() / 4)*1.2)
+    zIndex -= 1
+  })
+})
+</script>
 
 <%- contentFor('body') %>
 <div id="edit-my-burgers" class="container my-3 ">
@@ -14,18 +33,18 @@
 
   <div class="row">
     <div class="col-6">
-      <div id="selected-ingredient" >
-        <div id="top-ingredient" class="text-center">
+      <div id="selected-ingredient" class="position-relative">
+        <div id="top-ingredient" class="d-flex flex-column w-100 align-items-center">
           <% ingredients.topBun.forEach(function(ingredient) { %>
-            <img src='/assets/<%= ingredient %>.png'>
+            <img src='/assets/<%= ingredient %>.png' class="">
           <% }) %>
         </div>
-        <div id="mid-ingredient" class="d-flex flex-column mx-auto">
+        <div id="mid-ingredient" class="d-flex flex-column w-100 align-items-center">
         <% ingredients.middle.forEach(function(ingredient) { %>
           <img src='/assets/<%= ingredient %>.png'>
         <% }) %>
       </div>
-        <div id="bot-ingredient" class="text-center">
+        <div id="bot-ingredient" class="d-flex flex-column w-100 align-items-center">
           <% ingredients.botBun.forEach(function(ingredient) { %>
             <img src='/assets/<%= ingredient %>.png'>
           <% }) %>
@@ -189,7 +208,7 @@
           <button id="update-burger-btn" type="submit" class="btn mt-3 me-5">UPDATE!</button>
         </form>
 
-        <button id="destroy-burger-btn" type="button" class="btn mt-3 ms-5 btn-danger">DELETE!</button>
+        <button id="destroy-burger-btn" type="button" class="btn mt-3 ms-5 btn-danger" data-url="/api/my/burgers/<%= burger.id %>">DELETE!</button>
     </div>
   </div>
 </div>

@@ -5,12 +5,13 @@ const { authenticateCurrentUserByToken } = require('../../_helpers')
 const { Burger, User } = require('../../../models')
 
 const pagesMyBurgersIndex = async function(req, res) {
-  const { locals: { currentUser, currentBurger } } = res
+  // const { locals: { currentUser, currentBurger } } = res
+  const { locals: { currentUser} } = res
   // const { locals: { currentBurger } } = res
 
   const { query } = req
 
-  const ingredients = JSON.parse(currentBurger.ingredients)
+  // const ingredients = JSON.parse(currentBurger.ingredients)
 
 
   const q = query.q || ''
@@ -22,7 +23,8 @@ const pagesMyBurgersIndex = async function(req, res) {
       burgerName: {
         [Op.iLike]: `%${q}%`
       },
-      UserId: currentUser.id
+      UserId: currentUser.id,
+      // ingredients: JSON.parse(currentBurger.ingredients)
     },
     order: [['createdAt', 'DESC']],
     limit,
@@ -30,8 +32,10 @@ const pagesMyBurgersIndex = async function(req, res) {
   })
   res.render('pages/my-burgers/index', {
     burgers: results.rows,
+    // burger: currentBurger,
     filters: { q, page, limit, offset, totalPages: Math.ceil(results.count / limit),
-    ingredients }
+      }
+      // ingredients }
   })
 }
 

@@ -2,9 +2,36 @@
     <title>Update Your Burger</title>
 
     <%- contentFor('styles') %>
-
+    <style>
+      /* @media (max-width: 500px) {
+        #selected-ingredient img {
+          width: 180px;
+          position: absolute;
+        }
+      }
+      @media (min-width: 992px) {
+        #selected-ingredient img {
+          width: 250px;
+          position: absolute;
+        }
+      } */
+    </style>
     <%- contentFor('scripts') %>
     <script src="/js/form-control.js" defer></script>
+    <script>
+      $(document).ready(() => {
+        const $imgs = $('#selected-ingredient img')
+        let sumHeight = 0
+        let zIndex = 99
+
+        $imgs.each((i) => {
+          const $elem = $imgs.eq(i)
+          $elem.css('top', sumHeight).css('z-index', zIndex)
+          sumHeight += (($elem.height() / 4)*1.2)
+          zIndex -= 1
+        })
+      })
+      </script>
 
     <%- contentFor('body') %>
     <div id="show-burger" class="container my-3 ">
@@ -16,18 +43,18 @@
       <div class="row">
 
           <div class="col-6">
-            <div id="selected-ingredient" >
-              <div id="top-ingredient" class="text-center">
+            <div id="selected-ingredient" class="position-relative">
+              <div id="top-ingredient" class="d-flex flex-column w-100 align-items-center">
                 <% ingredients.topBun.forEach(function(ingredient) { %>
                   <img src='/assets/<%= ingredient %>.png'>
                 <% }) %>
               </div>
-              <div id="mid-ingredient" class="d-flex flex-column mx-auto">
+              <div id="mid-ingredient" class="d-flex flex-column w-100 align-items-center">
               <% ingredients.middle.forEach(function(ingredient) { %>
                 <img src='/assets/<%= ingredient %>.png'>
               <% }) %>
             </div>
-              <div id="bot-ingredient" class="text-center">
+              <div id="bot-ingredient" class="d-flex flex-column w-100 align-items-center">
                 <% ingredients.botBun.forEach(function(ingredient) { %>
                   <img src='/assets/<%= ingredient %>.png'>
                 <% }) %>
@@ -37,52 +64,53 @@
           <div class="col-6 ms-auto">
             <div>
               <div class="mb-3">
-                <h2 class="mb-3">
+                <h2 class="mb-3 burger-title">
                   <%= burger.burgerName %>
-                  <% if (currentUser) { %>
+                  <% if ((currentUser) && (currentUser = burger.UserId)) { %>
                     <a href="/my/burgers/<%= burger.id %>" class="edit-btn font-weight-bold">
-                    <button class="edit-btn btn btn-info btn-sm" href="/my/burgers/<%= burger.id %>"><i class="fas fa-edit"></i></button>
+                    <button class="edit-btn btn btn-info btn-sm" href="/my/burgers/<%= burger.id %>"><i class="far fa-edit"></i></button>
 
                       <% } %>
                   </a>
                 </h2>
 
                 <h3 class="mb-3">DESCRIPTION: </h3>
-                  <h4> <%= burger.description%></h4>
+                  <h4> <%= burger.description %></h4>
               </div>
               <div>
                 <h3 class="mb-3">INGREDIENTS:</h3>
 
               </div>
-              <div id="top-ingredient" class="text-center">
+              <div id="top-ingredient" class="d-flex flex-column w-100 align-items-left">
                 <% ingredients.topBun.forEach(function(ingredient) { %>
                   <div><%= ingredient %></div>
                 <% }) %>
               </div>
-              <div id="mid-ingredient" class="d-flex flex-column mx-auto">
-              <% ingredients.middle.forEach(function(ingredient) { %>
-                <div ><%= ingredient %></div>
-              <% }) %>
-            </div>
-              <div id="bot-ingredient" class="text-center">
+              <div id="mid-ingredient" class="d-flex flex-column w-100 align-items-left">
+                <% ingredients.middle.forEach(function(ingredient) { %>
+                  <div ><%= ingredient %></div>
+                <% }) %>
+              </div>
+              <div id="bot-ingredient" class="d-flex flex-column w-100 align-items-left">
                 <% ingredients.botBun.forEach(function(ingredient) { %>
                   <div ><%= ingredient %></div>
                 <% }) %>
               </div>
 
-                <% if (currentUser) { %>
-                  <!-- <div class="star-wrapper"> -->
+              <% if ((currentUser) && (currentUser != burger.UserId)) { %>
+              <!-- < if (currentUser) { %> -->
+
                     <h3>COMMENT AND GIVE YOUR RATING</h3>
                     <div class="star-rating me-auto">
-                      <input type="radio" name="rate" class="hide" id="rate-1">
+                      <input type="radio" name="rate" class="star" id="rate-1">
                       <label for="rate-1" class="fas fa-star"></label>
-                      <input type="radio" name="rate" class="hide" id="rate-2">
+                      <input type="radio" name="rate" class="star" id="rate-2">
                       <label for="rate-2" class="fas fa-star"></label>
-                      <input type="radio" name="rate" class="hide" id="rate-3">
+                      <input type="radio" name="rate" class="star" id="rate-3">
                       <label for="rate-3" class="fas fa-star"></label>
-                      <input type="radio" name="rate" class="hide" id="rate-4">
+                      <input type="radio" name="rate" class="star" id="rate-4">
                       <label for="rate-4" class="fas fa-star"></label>
-                      <input type="radio" name="rate" class="hide" id="rate-5">
+                      <input type="radio" name="rate" class="star" id="rate-5">
                       <label for="rate-5" class="fas fa-star"></label>
                     </div>
 
@@ -95,7 +123,6 @@
                     <div class="comment-btn mx-auto mt-3">
                       <button type="submit" id="rate-btn" class="btn-warning col-3">RATE!</button>
                     </div>
-                  <!-- </div> -->
                 </div>
                 <% } %>
               </div>

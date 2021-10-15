@@ -16,44 +16,48 @@ $(document).ready(function() {
     const ingredient = $formCheckInput.val()
     const type = $formCheckInput.data('type')
 
+    const $imgs = $('#selected-ingredient img')
+    let sumHeight = 0
+    let zIndex = 99
+    $imgs.each((i) => {
+      const $elem = $imgs.eq(i)
+      $elem.css('top', sumHeight).css('z-index', zIndex)
+      sumHeight += ($elem.height() / 2)
+      zIndex -= 1
+    })
+
+
     if (type === 'topBun') {
       ingredients[type] = [ingredient]
-      $topIngredient.html(`<img src='/assets/${ingredient}.png' class="">`)
+      $topIngredient.html(`<img src='/assets/${ingredient}.png' style="z-index: 100">`)
+      // $formCheckInput
+
     } else if (type === 'botBun') {
       ingredients[type] = [ingredient]
-      $botIngredient.html(`<img src='/assets/${ingredient}.png' class="">`)
+      $botIngredient.html(`<img src='/assets/${ingredient}.png' style="z-index: 1">`)
     } else {
-
       //limit checkboxes
-      let limit = 1
-      for (let i = 0; i < $formCheckInput.length; i++) {
-        $formCheckInput[i].onClick = () => {
-          let checkedcount = 0
-          for (let i = 0; i < $formCheckInput.length; i++) {
-            checkedcount += ($formCheckInput[i].checked) ? 1 : 0;
-          }
-          if (checkedcount > limit) {
-            console.log("You can select a maximum of " + limit + " checkboxes.")
-            alert("You can select a maximum of " + limit + " checkboxes.")
-            this.checked = false;
-          }
+      const $checked = $('input[type="checkbox"][checked]')
+      const limit = 2
+      if ($checked.length > limit) {
+        console.log("You can select a maximum of " + limit + " checkboxes.")
+        alert("You can select a maximum of " + limit + " checkboxes.")
+        $formCheckInput.removeAttr('checked')
+      } else {
+        if(ingredients.middle.includes(ingredient)) {
+          $(`img[src='/assets/${ingredient}.png']`).remove()
+          ingredients.middle = ingredients.middle.filter((i) => i !== ingredient)
+        } else {
+          $(`<img src='/assets/${ingredient}.png'> class="mid-ingredients position-absolute"`).appendTo($midIngredient)
+          ingredients.middle.push(ingredient)
         }
       }
-      if(ingredients.middle.includes(ingredient)) {
-        $(`img[src='/assets/${ingredient}.png']`).remove()
-        ingredients.middle = ingredients.middle.filter((i) => i !== ingredient)
-      } else {
-        $(`<img src='/assets/${ingredient}.png'> class="mid-ingredients position-absolute"`).appendTo($midIngredient)
-        ingredients.middle.push(ingredient)
-      }
     }
-
-
   })
 
 
   $ingredientForm.on('submit', '#new-burger-btn', function(e) {
-    console.log('hi')
+    console.log('newBurger')
     e.preventDefault()
     const formData = new FormData($ingredientForm[0])
 
@@ -61,7 +65,7 @@ $(document).ready(function() {
 
     axios({
       method: 'POST',
-      url: '/api/my/burgers',
+      url: '/my/burgers',
       data: formData,
       withCredentials: true
     }).then(function(resp) {
@@ -93,7 +97,7 @@ $(document).ready(function() {
   })
 
   $ingredientForm.on('submit', '#update-burger-btn', function(e) {
-    console.log('hi')
+    console.log('updateBurger')
     e.preventDefault()
     const formData = new FormData($ingredientForm[0])
 
@@ -141,10 +145,9 @@ $(document).ready(function() {
 
     $('#destroy-burger-btn').attr('disabled', true)
 
-    axios({ method: 'DELETE', url }).then(function() {
-      // $(`#destroy-burger-btn[data-url="${url}"][data-method="DELETE"]`).parentsUntil('#burgers-list').remove()
-      $(`#destroy-burger-btn[data-url="${url}"][data-method="DELETE"]`).remove()
-    }).catch(errorHandler).then(function() {
+    axios({ method: 'DELETE', url}).then(function() {
+      window.location.href = "/my/burgers"
+    }).catch().then(function() {
       $('#destroy-burger-btn').attr('disabled', false)
     })
   })
