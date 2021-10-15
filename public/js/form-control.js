@@ -3,15 +3,13 @@ $(document).ready(function() {
   const $midIngredient = $("#mid-ingredient")
   const $botIngredient = $("#bot-ingredient")
   const $ingredientForm = $('#ingredient-form')
+  const $formCheck = $('.form-check')
 
   const ingredients = {
     topBun: [],
     middle: [],
     botBun: []
   }
-
-let str="185-51-671";
-let newStr = str.replace(/-/g, "");
 
   $(".form-check").on('change', '.form-check-input', function(e) {
     const $formCheckInput = $(e.target)
@@ -25,6 +23,22 @@ let newStr = str.replace(/-/g, "");
       ingredients[type] = [ingredient]
       $botIngredient.html(`<img src='/assets/${ingredient}.png' class="">`)
     } else {
+
+      //limit checkboxes
+      let limit = 1
+      for (let i = 0; i < $formCheckInput.length; i++) {
+        $formCheckInput[i].onClick = () => {
+          let checkedcount = 0
+          for (let i = 0; i < $formCheckInput.length; i++) {
+            checkedcount += ($formCheckInput[i].checked) ? 1 : 0;
+          }
+          if (checkedcount > limit) {
+            console.log("You can select a maximum of " + limit + " checkboxes.")
+            alert("You can select a maximum of " + limit + " checkboxes.")
+            this.checked = false;
+          }
+        }
+      }
       if(ingredients.middle.includes(ingredient)) {
         $(`img[src='/assets/${ingredient}.png']`).remove()
         ingredients.middle = ingredients.middle.filter((i) => i !== ingredient)
@@ -33,7 +47,10 @@ let newStr = str.replace(/-/g, "");
         ingredients.middle.push(ingredient)
       }
     }
+
+
   })
+
 
   $ingredientForm.on('submit', '#new-burger-btn', function(e) {
     console.log('hi')
@@ -114,4 +131,22 @@ let newStr = str.replace(/-/g, "");
       }
     })
   })
+
+
+  $ingredientForm.on('click', '#destroy-burger-btn', function(e) {
+    e.preventDefault()
+    const parent = $(e.target).parent('button')[0]
+    const $elem = parent ? $(e.target).parent() : $(e.target)
+    const url = $elem.data('url')
+
+    $('#destroy-burger-btn').attr('disabled', true)
+
+    axios({ method: 'DELETE', url }).then(function() {
+      // $(`#destroy-burger-btn[data-url="${url}"][data-method="DELETE"]`).parentsUntil('#burgers-list').remove()
+      $(`#destroy-burger-btn[data-url="${url}"][data-method="DELETE"]`).remove()
+    }).catch(errorHandler).then(function() {
+      $('#destroy-burger-btn').attr('disabled', false)
+    })
+  })
+
 })

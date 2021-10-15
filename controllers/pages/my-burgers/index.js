@@ -5,8 +5,13 @@ const { authenticateCurrentUserByToken } = require('../../_helpers')
 const { Burger, User } = require('../../../models')
 
 const pagesMyBurgersIndex = async function(req, res) {
-  const { locals: { currentUser } } = res
+  const { locals: { currentUser, currentBurger } } = res
+  // const { locals: { currentBurger } } = res
+
   const { query } = req
+
+  const ingredients = JSON.parse(currentBurger.ingredients)
+
 
   const q = query.q || ''
   const page = Number(query.page) || 1
@@ -25,7 +30,8 @@ const pagesMyBurgersIndex = async function(req, res) {
   })
   res.render('pages/my-burgers/index', {
     burgers: results.rows,
-    filters: { q, page, limit, offset, totalPages: Math.ceil(results.count / limit) }
+    filters: { q, page, limit, offset, totalPages: Math.ceil(results.count / limit),
+    ingredients }
   })
 }
 

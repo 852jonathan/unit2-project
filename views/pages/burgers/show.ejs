@@ -4,27 +4,11 @@
     <%- contentFor('styles') %>
 
     <%- contentFor('scripts') %>
-    <script src="/js/ingredients-selector.js" defer></script>
-    <script>
-      $commentBtn = $("comment-btn")
-      const btn = document.querySelector("button");
-      const post = document.querySelector(".post");
-      const widget = document.querySelector(".star-widget");
-      const editBtn = document.querySelector(".edit");
-      btn.onclick = ()=>{
-        widget.style.display = "none";
-        post.style.display = "block";
-        editBtn.onclick = ()=>{
-          widget.style.display = "block";
-          post.style.display = "none";
-        }
-        return false;
-      }
-    </script>
+    <script src="/js/form-control.js" defer></script>
 
     <%- contentFor('body') %>
     <div id="show-burger" class="container my-3 ">
-      <h1 class="burgers-title-text mb-3 mt-5 text-center">Show A Burger</h1>
+      <h1 class="burgers-title-text mb-3 mt-5 text-center">Rate The Burger</h1>
 
 
 
@@ -53,16 +37,26 @@
           <div class="col-6 ms-auto">
             <div>
               <div class="mb-3">
-                <h2 class="mb-3"><%= burger.burgerName %></h2>
-                <h3 class="mb-3"><%= burger.description%></h3>
+                <h2 class="mb-3">
+                  <%= burger.burgerName %>
+                  <% if (currentUser) { %>
+                    <a href="/my/burgers/<%= burger.id %>" class="edit-btn font-weight-bold">
+                    <button class="edit-btn btn btn-info btn-sm" href="/my/burgers/<%= burger.id %>"><i class="fas fa-edit"></i></button>
+
+                      <% } %>
+                  </a>
+                </h2>
+
+                <h3 class="mb-3">DESCRIPTION: </h3>
+                  <h4> <%= burger.description%></h4>
               </div>
               <div>
-                <h4 class="mb-3">Ingredients</h4>
+                <h3 class="mb-3">INGREDIENTS:</h3>
 
               </div>
               <div id="top-ingredient" class="text-center">
                 <% ingredients.topBun.forEach(function(ingredient) { %>
-                  <div ><%= ingredient %></div>
+                  <div><%= ingredient %></div>
                 <% }) %>
               </div>
               <div id="mid-ingredient" class="d-flex flex-column mx-auto">
@@ -76,35 +70,32 @@
                 <% }) %>
               </div>
 
-              <div>
                 <% if (currentUser) { %>
-                  <h2>RATING HERE</h2>
-                  <div class="star-widget">
-                    <input type="radio" name="rate" id="rate-5">
-                    <label for="rate-5" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-4">
-                    <label for="rate-4" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-3">
-                    <label for="rate-3" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-2">
-                    <label for="rate-2" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-1">
-                    <label for="rate-1" class="fas fa-star"></label>
+                  <!-- <div class="star-wrapper"> -->
+                    <h3>COMMENT AND GIVE YOUR RATING</h3>
+                    <div class="star-rating me-auto">
+                      <input type="radio" name="rate" class="hide" id="rate-1">
+                      <label for="rate-1" class="fas fa-star"></label>
+                      <input type="radio" name="rate" class="hide" id="rate-2">
+                      <label for="rate-2" class="fas fa-star"></label>
+                      <input type="radio" name="rate" class="hide" id="rate-3">
+                      <label for="rate-3" class="fas fa-star"></label>
+                      <input type="radio" name="rate" class="hide" id="rate-4">
+                      <label for="rate-4" class="fas fa-star"></label>
+                      <input type="radio" name="rate" class="hide" id="rate-5">
+                      <label for="rate-5" class="fas fa-star"></label>
+                    </div>
 
-                    <form action="#">
-                      <div class="textarea mt-3">
-                        <textarea placeholder="Place a comment here"></textarea>
-                      </div>
-                      <div class="comment-btn mx-auto mt-3">
-                        <button type="submit" class="btn-primary">Comment</button>
-                      </div>
-                    </form>
-                  </div>
-                  <form id="comment-form">
 
-                  <label for="comment" class="form-label">Comment</label>
-                  <input type="name" class="form-control" id="comment" name="comment" value="<%= burger.comment %>">
-                  <div id="comment-help" class="form-text">Place a short comment here</div>
+
+                    <form id="comment-form">
+
+                    <input type="name" class="form-control" id="comment" name="comment" value="<%= burger.comment %>">
+                    <div id="comment-help" class="form-text">Place a short comment here</div>
+                    <div class="comment-btn mx-auto mt-3">
+                      <button type="submit" id="rate-btn" class="btn-warning col-3">RATE!</button>
+                    </div>
+                  <!-- </div> -->
                 </div>
                 <% } %>
               </div>

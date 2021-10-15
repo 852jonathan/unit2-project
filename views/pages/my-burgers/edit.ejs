@@ -4,7 +4,7 @@
 <%- contentFor('styles') %>
 
 <%- contentFor('scripts') %>
-<script src="/js/ingredients-selector.js" defer></script>
+<script src="/js/form-control.js" defer></script>
 
 <%- contentFor('body') %>
 <div id="edit-my-burgers" class="container my-3 ">
@@ -186,8 +186,10 @@
         </div>
 
         <div>
-        <button id="update-burger-btn" type="submit" class="btn mt-3">UPDATE!</button>
-      </form>
+          <button id="update-burger-btn" type="submit" class="btn mt-3 me-5">UPDATE!</button>
+        </form>
+
+        <button id="destroy-burger-btn" type="button" class="btn mt-3 ms-5 btn-danger">DELETE!</button>
     </div>
   </div>
 </div>
