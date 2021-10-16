@@ -1,10 +1,7 @@
+const multer = require('multer')
 const { body } = require('express-validator')
 
 const { checkValidation, authenticateCurrentUserByToken , myBurger: { getCurrentUserBurgerById } } = require('../../_helpers')
-
-const { Burger } = require('../../../models')
-const multer = require('multer')
-
 
 const permittedChangeParams = {
   Burger: ['burgerName', 'description'],
@@ -27,8 +24,8 @@ const apiMyBurgersUpdate = async function(req, res) {
 module.exports = [
   multer().none(),
   authenticateCurrentUserByToken('json'),
+  getCurrentUserBurgerById('json'),
   validation,
   checkValidation,
-  getCurrentUserBurgerById('json'),
   apiMyBurgersUpdate
 ]

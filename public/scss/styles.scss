@@ -163,6 +163,11 @@ body {
 
 
 // My Burgers Index ===============
+
+.card {
+  background-color: rgba(245, 211, 116, 0.5);
+}
+
 #new-btn {
   font-weight: bold;
   font-family: 'PT Sans', sans-serif;
@@ -209,34 +214,34 @@ body {
 
 // Create Your Burger
 
-#top-ingredient {
-  width: max(300px);
-  z-index: 100;
-  // position: absolute;
-}
+// #top-ingredient {
+//   width: max(300px);
+//   z-index: 100;
+//   // position: absolute;
+// }
 
-#mid-ingredient {
-  width: max(255px);
+// #mid-ingredient {
+//   width: max(255px);
 
 
 
-  .moved {
+//   .moved {
 
-    z-index: 50;
-    // position: relative;
-    // transform: translate(10px,10px);
+//     z-index: 50;
+//     // position: relative;
+//     // transform: translate(10px,10px);
 
-  }
-}
+//   }
+// }
 
-.mid-ingredients {
-  top: 0px;
-}
+// .mid-ingredients {
+//   top: 0px;
+// }
 
-#bot-ingredient {
-  width: max(300px);
-  z-index: 1;
-}
+// #bot-ingredient {
+//   width: max(300px);
+//   z-index: 1;
+// }
 
 //=====================
 //Rating

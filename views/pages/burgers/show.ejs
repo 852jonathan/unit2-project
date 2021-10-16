@@ -66,11 +66,10 @@
               <div class="mb-3">
                 <h2 class="mb-3 burger-title">
                   <%= burger.burgerName %>
-                  <% if ((currentUser) && (currentUser = burger.UserId)) { %>
+                  <% if ((currentUser) && (currentUser.id === burger.UserId)) { %>
                     <a href="/my/burgers/<%= burger.id %>" class="edit-btn font-weight-bold">
                     <button class="edit-btn btn btn-info btn-sm" href="/my/burgers/<%= burger.id %>"><i class="far fa-edit"></i></button>
-
-                      <% } %>
+                  <% } %>
                   </a>
                 </h2>
 
@@ -97,8 +96,7 @@
                 <% }) %>
               </div>
 
-              <% if ((currentUser) && (currentUser != burger.UserId)) { %>
-              <!-- < if (currentUser) { %> -->
+              <% if ((currentUser) && (currentUser.id !== burger.UserId)) { %>
 
                     <h3>COMMENT AND GIVE YOUR RATING</h3>
                     <div class="star-rating me-auto">

@@ -2,17 +2,12 @@ const { Op } = require("sequelize")
 
 const { authenticateCurrentUserByToken } = require('../../_helpers')
 
-const { Burger, User } = require('../../../models')
+const { Burger } = require('../../../models')
 
 const pagesMyBurgersIndex = async function(req, res) {
-  // const { locals: { currentUser, currentBurger } } = res
   const { locals: { currentUser} } = res
-  // const { locals: { currentBurger } } = res
 
   const { query } = req
-
-  // const ingredients = JSON.parse(currentBurger.ingredients)
-
 
   const q = query.q || ''
   const page = Number(query.page) || 1
@@ -23,19 +18,16 @@ const pagesMyBurgersIndex = async function(req, res) {
       burgerName: {
         [Op.iLike]: `%${q}%`
       },
-      UserId: currentUser.id,
-      // ingredients: JSON.parse(currentBurger.ingredients)
+      UserId: currentUser.id
     },
     order: [['createdAt', 'DESC']],
     limit,
     offset
   })
+
   res.render('pages/my-burgers/index', {
     burgers: results.rows,
-    // burger: currentBurger,
-    filters: { q, page, limit, offset, totalPages: Math.ceil(results.count / limit),
-      }
-      // ingredients }
+    filters: { q, page, limit, offset, totalPages: Math.ceil(results.count / limit) }
   })
 }
 

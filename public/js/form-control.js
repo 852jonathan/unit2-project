@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(() => {
   const $topIngredient = $("#top-ingredient")
   const $midIngredient = $("#mid-ingredient")
   const $botIngredient = $("#bot-ingredient")
@@ -11,7 +11,7 @@ $(document).ready(function() {
     botBun: []
   }
 
-  $(".form-check").on('change', '.form-check-input', function(e) {
+  $formCheck.on('change', '.form-check-input', function(e) {
     const $formCheckInput = $(e.target)
     const ingredient = $formCheckInput.val()
     const type = $formCheckInput.data('type')
@@ -19,57 +19,53 @@ $(document).ready(function() {
     const $imgs = $('#selected-ingredient img')
     let sumHeight = 0
     let zIndex = 99
+
     $imgs.each((i) => {
       const $elem = $imgs.eq(i)
       $elem.css('top', sumHeight).css('z-index', zIndex)
-      sumHeight += ($elem.height() / 2)
+      sumHeight += (($elem.height() / 4)*1.2)
       zIndex -= 1
     })
-
-
     if (type === 'topBun') {
       ingredients[type] = [ingredient]
-      $topIngredient.html(`<img src='/assets/${ingredient}.png' style="z-index: 100">`)
-      // $formCheckInput
-
+      $topIngredient.html(`<img src='/assets/${ingredient}.png' class="" style="z-index: 100">`)
     } else if (type === 'botBun') {
       ingredients[type] = [ingredient]
-      $botIngredient.html(`<img src='/assets/${ingredient}.png' style="z-index: 1">`)
+      $botIngredient.html(`<img src='/assets/${ingredient}.png'>`)
     } else {
       //limit checkboxes
-      const $checked = $('input[type="checkbox"][checked]')
-      const limit = 2
+      const $checked = $('input[type="checkbox"]:checked')
+      const limit = 10
       if ($checked.length > limit) {
         console.log("You can select a maximum of " + limit + " checkboxes.")
         alert("You can select a maximum of " + limit + " checkboxes.")
-        $formCheckInput.removeAttr('checked')
+        $formCheckInput.trigger('click')
       } else {
         if(ingredients.middle.includes(ingredient)) {
           $(`img[src='/assets/${ingredient}.png']`).remove()
           ingredients.middle = ingredients.middle.filter((i) => i !== ingredient)
         } else {
-          $(`<img src='/assets/${ingredient}.png'> class="mid-ingredients position-absolute"`).appendTo($midIngredient)
+          $(`<img src='/assets/${ingredient}.png'> class=""`).appendTo($midIngredient)
           ingredients.middle.push(ingredient)
         }
       }
     }
   })
 
-
-  $ingredientForm.on('submit', '#new-burger-btn', function(e) {
-    console.log('newBurger')
+  $ingredientForm.on('submit', function(e) {
+    console.log('new/edit Burger')
     e.preventDefault()
+    const url = $ingredientForm.data('url')
+    const method = $ingredientForm.data('method')
     const formData = new FormData($ingredientForm[0])
-
     formData.append('ingredients', JSON.stringify(ingredients))
 
     axios({
-      method: 'POST',
-      url: '/my/burgers',
+      method,
+      url,
       data: formData,
       withCredentials: true
     }).then(function(resp) {
-      console.log(resp.data)
       window.location.href = '/my/burgers'
     }).catch(function(err) {
       switch(err.response.status) {
@@ -95,47 +91,6 @@ $(document).ready(function() {
       }
     })
   })
-
-  $ingredientForm.on('submit', '#update-burger-btn', function(e) {
-    console.log('updateBurger')
-    e.preventDefault()
-    const formData = new FormData($ingredientForm[0])
-
-    formData.append('ingredients', JSON.stringify(ingredients))
-
-    axios({
-      method: 'PUT',
-      url: '/api/my/burgers',
-      data: formData,
-      withCredentials: true
-    }).then(function(resp) {
-      console.log(resp.data)
-      window.location.href = '/my/burgers'
-    }).catch(function(err) {
-      switch(err.response.status) {
-        case 406:{
-          const { response: { data: { errors } }} = err
-
-          $ingredientForm.find('.invalid-feedback').empty()
-          $ingredientForm.find('.is-invalid').removeClass('is-invalid')
-
-          errors.forEach(function(error) {
-            const { param: fieldName, msg } = error
-            const $input = $ingredientForm.find(`[name="${fieldName}"]`)
-            const $invalidFeedback = $input.siblings('.invalid-feedback')
-            $input.addClass('is-invalid')
-            $invalidFeedback.text(msg)
-          })
-          break
-        }
-        default: {
-          console.log(err.response)
-          break
-        }
-      }
-    })
-  })
-
 
   $ingredientForm.on('click', '#destroy-burger-btn', function(e) {
     e.preventDefault()

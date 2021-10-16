@@ -6,7 +6,7 @@
 <%- contentFor('scripts') %>
 <script>
   $(document).ready(() => {
-    const $imgs = $('#selected-ingredient img')
+    const $imgs = $('#burgers-list img')
     let sumHeight = 0
     let zIndex = 99
 
@@ -30,30 +30,31 @@
 
   <% if (burgers.length > 0) { %>
     <div id="burgers-list" class="row align-items-center g-3 text-center">
-      <% burgers.forEach(function(burgers){ %>
+      <% burgers.forEach(function(burger){ %>
+        <% const ingredients = JSON.parse(burger.ingredients) %>
 
         <div class="col-md-4">
           <div class="card">
-            <img class="burger-preview-img card-img-top mx-auto edit-btn" src="/assets/burger-placeholder.png" alt="BurgerPreview">
+            <!-- <img class="burger-preview-img card-img-top mx-auto edit-btn" src="/assets/burger-placeholder.png" alt="BurgerPreview"> -->
 
             <div id="top-ingredient" class="d-flex flex-column w-100 align-items-center">
-              <!-- < ingredients.topBun.forEach(function(ingredient) { %>
-                <img src='/assets/<= ingredient %>.png'>
-              < }) %>
+              <% ingredients.topBun.forEach(function(ingredient) { %>
+                <img src='/assets/<%= ingredient %>.png'>
+              <% }) %>
             </div>
             <div id="mid-ingredient" class="d-flex flex-column w-100 align-items-center">
-            < ingredients.middle.forEach(function(ingredient) { %>
-              <img src='/assets/<= ingredient %>.png'>
-            < }) %>
-          </div>
+              <% ingredients.middle.forEach(function(ingredient) { %>
+                <img src='/assets/<%= ingredient %>.png'>
+              <% }) %>
+            </div>
             <div id="bot-ingredient" class="d-flex flex-column w-100 align-items-center">
-              < ingredients.botBun.forEach(function(ingredient) { %>
-                <img src='/assets/<= ingredient %>.png'>
-              < }) %> -->
+              <% ingredients.botBun.forEach(function(ingredient) { %>
+                <img src='/assets/<%= ingredient %>.png'>
+              <% }) %>
             </div>
             <div class="card-body">
-              <h5 class="card-title text-truncate"><a href="/my/burgers/<%= burgers.id %>" class="edit-btn font-weight-bold"><%= burgers.burgerName %></a></h5>
-              <p class="burger-card-description card-text text-truncate"><%= burgers.description %></p>
+              <h5 class="card-title text-truncate"><a href="/my/burgers/<%= burger.id %>" class="edit-btn font-weight-bold"><%= burger.burgerName %></a></h5>
+              <p class="burger-card-description card-text text-truncate"><%= burger.description %></p>
             </div>
           </div>
         </div>
