@@ -30,12 +30,21 @@
           sumHeight += (($elem.height() / 4)*1.2)
           zIndex -= 1
         })
+
       })
       </script>
 
     <%- contentFor('body') %>
     <div id="show-burger" class="container my-3 ">
-      <h1 class="burgers-title-text mb-3 mt-5 text-center">Rate The Burger</h1>
+      <% if ((currentUser) && (currentUser.id !==  burger.UserId)) { %>
+
+      <h1 class="burgers-title-text mb-3 mt-5 text-center title">Rate The Burger</h1>
+      <% } else if ((currentUser) && (currentUser.id ===  burger.UserId)) { %>
+
+        <h1 class="burgers-title-text mb-3 mt-5 text-center title">View Your Burger</h1>
+      <% } else {%>
+        <h1 class="burgers-title-text mb-3 mt-5 text-center title">View A Burger</h1>
+      <% } %>
 
 
 
@@ -46,17 +55,17 @@
             <div id="selected-ingredient" class="position-relative">
               <div id="top-ingredient" class="d-flex flex-column w-100 align-items-center">
                 <% ingredients.topBun.forEach(function(ingredient) { %>
-                  <img src='/assets/<%= ingredient %>.png'>
+                  <img src='/assets/<%= ingredient %>.png' height="auto" width="250">
                 <% }) %>
               </div>
               <div id="mid-ingredient" class="d-flex flex-column w-100 align-items-center">
               <% ingredients.middle.forEach(function(ingredient) { %>
-                <img src='/assets/<%= ingredient %>.png'>
+                <img src='/assets/<%= ingredient %>.png' height="auto" width="250">
               <% }) %>
             </div>
               <div id="bot-ingredient" class="d-flex flex-column w-100 align-items-center">
                 <% ingredients.botBun.forEach(function(ingredient) { %>
-                  <img src='/assets/<%= ingredient %>.png'>
+                  <img src='/assets/<%= ingredient %>.png' height="auto" width="250">
                 <% }) %>
               </div>
             </div>
@@ -64,60 +73,61 @@
           <div class="col-6 ms-auto">
             <div>
               <div class="mb-3">
-                <h2 class="mb-3 burger-title">
-                  <%= burger.burgerName %>
+                <h2 class="mb-3 burger-title d-flex">
+                  <h3 class="mb-3 title">THE NAME: </h3>
+                  <h4 style="text-transform: capitalize"> <%= burger.burgerName %>
                   <% if ((currentUser) && (currentUser.id === burger.UserId)) { %>
-                    <a href="/my/burgers/<%= burger.id %>" class="edit-btn font-weight-bold">
-                    <button class="edit-btn btn btn-info btn-sm" href="/my/burgers/<%= burger.id %>"><i class="far fa-edit"></i></button>
-                  <% } %>
+                    <a href="/my/burgers/<%= burger.id %>" class="font-weight-bold">
+                    <button class="edit-btn btn btn-sm"><i class="far fa-edit" height="auto" width="15"></i></button>
+                  <% } %></h4>
                   </a>
                 </h2>
 
-                <h3 class="mb-3">DESCRIPTION: </h3>
+                <h3 class="mb-3 title">DESCRIPTION: </h3>
                   <h4> <%= burger.description %></h4>
               </div>
               <div>
-                <h3 class="mb-3">INGREDIENTS:</h3>
+                <h3 class="mb-3 title">INGREDIENTS:</h3>
 
               </div>
               <div id="top-ingredient" class="d-flex flex-column w-100 align-items-left">
                 <% ingredients.topBun.forEach(function(ingredient) { %>
-                  <div><%= ingredient %></div>
+                  <div style="text-transform: capitalize"><%= ingredient %></div>
                 <% }) %>
               </div>
               <div id="mid-ingredient" class="d-flex flex-column w-100 align-items-left">
                 <% ingredients.middle.forEach(function(ingredient) { %>
-                  <div ><%= ingredient %></div>
+                  <div style="text-transform: capitalize"><%= ingredient  %></div>
                 <% }) %>
               </div>
               <div id="bot-ingredient" class="d-flex flex-column w-100 align-items-left">
                 <% ingredients.botBun.forEach(function(ingredient) { %>
-                  <div ><%= ingredient %></div>
+                  <div style="text-transform: capitalize"><%= ingredient %></div>
                 <% }) %>
               </div>
 
               <% if ((currentUser) && (currentUser.id !== burger.UserId)) { %>
 
-                    <h3>COMMENT AND GIVE YOUR RATING</h3>
-                    <div class="star-rating me-auto">
-                      <input type="radio" name="rate" class="star" id="rate-1">
-                      <label for="rate-1" class="fas fa-star"></label>
-                      <input type="radio" name="rate" class="star" id="rate-2">
-                      <label for="rate-2" class="fas fa-star"></label>
-                      <input type="radio" name="rate" class="star" id="rate-3">
-                      <label for="rate-3" class="fas fa-star"></label>
-                      <input type="radio" name="rate" class="star" id="rate-4">
-                      <label for="rate-4" class="fas fa-star"></label>
+                    <h3 class="title mt-3">COMMENT AND GIVE YOUR RATING</h3>
+                    <div class="star-rating d-flex flex-row-reverse justify-content-end">
                       <input type="radio" name="rate" class="star" id="rate-5">
-                      <label for="rate-5" class="fas fa-star"></label>
+                      <label for="rate-5" class="fas fa-star mb-2"></label>
+                      <input type="radio" name="rate" class="star" id="rate-4">
+                      <label for="rate-4" class="fas fa-star mb-2"></label>
+                      <input type="radio" name="rate" class="star" id="rate-3">
+                      <label for="rate-3" class="fas fa-star mb-2"></label>
+                      <input type="radio" name="rate" class="star" id="rate-2">
+                      <label for="rate-2" class="fas fa-star mb-2"></label>
+                      <input type="radio" name="rate" class="star" id="rate-1">
+                      <label for="rate-1" class="fas fa-star mb-2 "></label>
                     </div>
 
 
 
                     <form id="comment-form">
 
-                    <input type="name" class="form-control" id="comment" name="comment" value="<%= burger.comment %>">
-                    <div id="comment-help" class="form-text">Place a short comment here</div>
+                    <input type="name" class="form-control" id="comment" name="comment" placeholder="Give your comment here" value="<%= burger.comment %>">
+                    <!-- <div id="comment-help" class="form-text">Place a short comment here</div> -->
                     <div class="comment-btn mx-auto mt-3">
                       <button type="submit" id="rate-btn" class="btn-warning col-3">RATE!</button>
                     </div>

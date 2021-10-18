@@ -2,42 +2,18 @@
 <title>Create Your Burger</title>
 
 <%- contentFor('styles') %>
-<style>
-      /* @media (max-width: 500px) {
-        #selected-ingredient img {
-          width: 180px;
-          position: absolute;
-        }
-      }
-      @media (min-width: 992px) {
-        #selected-ingredient img {
-          width: 250px;
-          position: absolute;
-        }
-      } */
-</style>
 
 <%- contentFor('scripts') %>
 <script src="/js/form-control.js" defer></script>
-<!-- <script>
-  $(document).ready(() => {
-    const $imgs = $('#selected-ingredient img')
-    let sumHeight = 0
-    let zIndex = 2
-    $imgs.each((i) => {
-      const $elem = $imgs.eq(i)
-      $elem.css('top', sumHeight).css('z-index', zIndex)
-      sumHeight += ($elem.height() / 2)
-      zIndex += 1
-    })
-  })
-  </script> -->
+
+
 
 <%- contentFor('body') %>
-<div id="new-my-burgers" class="container my-3 ">
-  <h1 class="burgers-title-text mb-3 mt-5 text-center">Create Your Burger</h1>
 
-  <h2>New Burger</h2>
+<div id="new-my-burgers" class="container my-3 ">
+  <h1 class="burgers-title-text mb-3 mt-5 text-center title">Create Your Burger</h1>
+
+  <h2 class="title">New Burger</h2>
 
   <div class="row">
     <div class="col-6">

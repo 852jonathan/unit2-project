@@ -4,51 +4,71 @@
 <%- contentFor('styles') %>
 
 <%- contentFor('scripts') %>
+<script>
+  $(document).ready(() => {
+    const $cards = $('.card')
+
+    $cards.each((i) => {
+      const $container = $cards.eq(i).find('#ingredients')
+      const $imgs = $cards.eq(i).find('img')
+      let containerHeight = 0
+      let sumHeight = 30
+      let zIndex = 99
+
+      $imgs.each((i) => {
+        const $elem = $imgs.eq(i)
+        $elem.css('top', sumHeight).css('z-index', zIndex)
+        sumHeight += (($elem.height() / 4) * 1.2)
+        zIndex -= 1
+        if ($imgs.length - 1 === i) {
+          containerHeight += $elem.height()
+        } else {
+          containerHeight += (($elem.height() / 4) * 1.2)
+        }
+      })
+      $container.height(`${containerHeight+50}px`)
+    })
+
+  })
+  </script>
 
 <%- contentFor('body') %>
-<div id="burgers-index" class="container my-3 ">
+<div id="burgers-index" class="container my-3">
   <h1 class="burgers-index-text mb-3 mt-5 text-center">Create and Rate Burgers</h1>
+  <div class="text-center">
+    <%- include('_partials/filter') %>
+  </div>
 
-  <!-- <- include('_partials/filter') %> -->
   <h2>Newest Burgers</h2>
   <% if (burgers.length > 0) { %>
-    <div id="burgers-list" class="row align-items-center g-3 text-center">
+    <div id="burgers-list" class="row align-items-center g-3 text-center align-items-stretch">
       <% burgers.forEach(function(burger){ %>
         <% const ingredients = JSON.parse(burger.ingredients) %>
 
-
-  <div class="col-md-4">
-    <div class="card">
-      <div id="top-ingredient" class="d-flex flex-column w-100 align-items-center">
-        <% ingredients.topBun.forEach(function(ingredient) { %>
-          <img src='/assets/<%= ingredient %>.png'>
-        <% }) %>
-      </div>
-      <div id="mid-ingredient" class="d-flex flex-column w-100 align-items-center">
-        <% ingredients.middle.forEach(function(ingredient) { %>
-          <img src='/assets/<%= ingredient %>.png'>
-        <% }) %>
-      </div>
-      <div id="bot-ingredient" class="d-flex flex-column w-100 align-items-center">
-        <% ingredients.botBun.forEach(function(ingredient) { %>
-          <img src='/assets/<%= ingredient %>.png'>
-        <% }) %>
-      </div>
-      <div class="card-body">
-        <h5 class="card-title text-truncate"><a class="show-btn font-weight-bold" href="/burgers/<%= burger.id %>"><%= burger.burgerName %></a></h5>
-        <p class="burger-card-description card-text text-truncate"><%= burger.description %></p>
-      </div>
+        <div class="col-md-4">
+          <div class="card position-relative h-100">
+            <div id="ingredients" class="d-flex flex-column align-items-center flex-grow-1">
+              <% ingredients.topBun.forEach(function(ingredient) { %>
+                <img src='/assets/<%= ingredient %>.png' height="70" width="180">
+              <% }) %>
+              <% ingredients.middle.forEach(function(ingredient) { %>
+                <img src='/assets/<%= ingredient %>.png' height="70" width="180">
+              <% }) %>
+              <% ingredients.botBun.forEach(function(ingredient) { %>
+                <img src='/assets/<%= ingredient %>.png' height="70" width="180">
+              <% }) %>
+            </div>
+            <div class="card-body flex-grow-0">
+              <h5 class="card-title text-truncate"><a class="link-success show-btn font-weight-bold" href="/burgers/<%= burger.id %>"><%= burger.burgerName %></a></h5>
+              <p class="burger-card-description card-text text-truncate"><%= burger.description %></p>
+            </div>
+          </div>
+        </div>
+      <% }) %>
     </div>
-  </div>
-        <% }) %>
-  </div>
 
-
-
-    <!-- <- include('_partials/pagination') %> -->
+    <%- include('_partials/pagination') %>
   <% } else { %>
     <div>No Burgers</div>
   <% } %>
 </div>
-
-<!-- <- include('../../_partials/modal') %> -->

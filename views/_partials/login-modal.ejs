@@ -26,6 +26,8 @@
         window.location.href = '/my/burgers'
       }).catch(function(err) {
         switch (err.response.status) {
+          // case 404:
+          // case 401:
           case 406: {
             const { response: { data: { errors } }} = err
 
@@ -44,11 +46,24 @@
           case 404:
           case 401: {
             $errorText.html(err.response.data.message)
-            break
-          }
-          default: {
-            console.log(err.response)
-            break
+
+            // const { response: { data: { errors } }} = err
+
+            // $loginModal.find('.invalid-feedback').empty()
+            // $loginModal.find('.is-invalid').removeClass('is-invalid')
+
+            // errors.forEach(function(error) {
+            //   const { param: fieldName, msg } = error
+            //   const $input = $loginModal.find(`[name="${fieldName}"]`)
+            //   const $invalidFeedback = $input.siblings('.invalid-feedback')
+            //   $input.addClass('is-invalid')
+            //   $invalidFeedback.text(msg)
+            // })
+            // break
+          // }
+          // default: {
+          //   console.log(err.response)
+          //   break
           }
         }
       })
@@ -63,11 +78,11 @@
 <div id="login-modal" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center ps-5">
+        <h5 class="modal-title pt-0 mx-auto flex-fill">LOGIN</h5>
+        <button type="button" class="btn-close ms-auto ps-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
 
-        <div class="modal-header d-flex justify-content-center ps-5">
-          <h5 class="modal-title pt-0 mx-auto flex-fill">LOGIN</h5>
-          <button type="button" class="btn-close ms-auto ps-0" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
       <div class="modal-body">
         <form id="login-form" novalidate>
           <div class="form-group mt-3 mb-3">
@@ -79,14 +94,15 @@
             <label>PASSWORD:</label>
             <input class="form-control" type="password" name="password">
             <div class="invalid-feedback"></div>
+            <div id="error-text" class="text-danger"></div>
           </div>
         </form>
       </div>
+
       <div class="modal-footer py-0">
-
         <button type="button" id="login-form-submit" class="btn mx-auto mt-3">LOGIN</button>
-
       </div>
+
       <button type="button" id="signup-in-login" class="btn btn-link mt-0" data-target="#signup-modal" data-dismiss="modal" data-toggle="modal" data-url="/api/auth/signup" data-method="GET">
         Don't have an account yet? Register here! </button>
     </div>

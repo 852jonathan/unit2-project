@@ -16,16 +16,6 @@ $(document).ready(() => {
     const ingredient = $formCheckInput.val()
     const type = $formCheckInput.data('type')
 
-    const $imgs = $('#selected-ingredient img')
-    let sumHeight = 0
-    let zIndex = 99
-
-    $imgs.each((i) => {
-      const $elem = $imgs.eq(i)
-      $elem.css('top', sumHeight).css('z-index', zIndex)
-      sumHeight += (($elem.height() / 4)*1.2)
-      zIndex -= 1
-    })
     if (type === 'topBun') {
       ingredients[type] = [ingredient]
       $topIngredient.html(`<img src='/assets/${ingredient}.png' class="" style="z-index: 100">`)
@@ -37,8 +27,8 @@ $(document).ready(() => {
       const $checked = $('input[type="checkbox"]:checked')
       const limit = 10
       if ($checked.length > limit) {
-        console.log("You can select a maximum of " + limit + " checkboxes.")
-        alert("You can select a maximum of " + limit + " checkboxes.")
+        console.log("You can select a maximum of " + limit + " ingredients.")
+        alert("You can select a maximum of " + limit + " ingredients.")
         $formCheckInput.trigger('click')
       } else {
         if(ingredients.middle.includes(ingredient)) {
@@ -50,6 +40,17 @@ $(document).ready(() => {
         }
       }
     }
+
+    let sumHeight = 0
+    let zIndex = 99
+
+    const $imgs = $('#selected-ingredient img')
+    $imgs.each((i) => {
+      const $elem = $imgs.eq(i)
+      $elem.css('top', sumHeight).css('z-index', zIndex)
+      sumHeight += (($elem.height() / 4) * 1.3)
+      zIndex -= 1
+    })
   })
 
   $ingredientForm.on('submit', function(e) {

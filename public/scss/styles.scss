@@ -5,9 +5,24 @@
     width: 250px;
     position: absolute;
   }
+  .card img {
+    width: 150px;
+    position: absolute;
+  }
+
+  .fa-star {
+    font-size: 40px;
+
+  }
+
+  .fas {
+    width: 40px;
+    padding: 10px;
+
+  }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 992px) {
   .hero-img {
 
     opacity: 0.5;
@@ -21,10 +36,24 @@
   }
 
   #selected-ingredient img {
-    width: 180px;
+    width: 130px;
     position: absolute;
   }
 
+  .card img {
+    width: 150px;
+    position: absolute;
+  }
+
+  .fa-star {
+    font-size: 20px;
+
+  }
+  .fas {
+    width: 20px;
+    padding: 10px;
+
+  }
 }
 
 
@@ -82,12 +111,14 @@ body {
   .burgers-index-text {
     font-family: 'Permanent Marker', sans-serif;
     text-align: center;
-    color: #707070;
+    color: #DCA200;
+
   }
 
   h2 {
     font-family: 'Permanent Marker', sans-serif;
-    color: #707070;
+    color: #DCA200;
+
 
   }
 
@@ -95,8 +126,12 @@ body {
     width: 200px;
     height: auto;
   }
+  .show-btn {
+    text-transform: capitalize;
 
+  }
 }
+
 
 .hero-image-wrap {
   // z-index: -1;
@@ -164,8 +199,20 @@ body {
 
 // My Burgers Index ===============
 
+.title {
+  font-family: 'Permanent Marker', sans-serif;
+  // text-align: center;
+  color: #DCA200;
+
+}
 .card {
   background-color: rgba(245, 211, 116, 0.5);
+  text-transform: capitalize;
+
+}
+
+.link-success {
+  color: rgb(64, 204, 64);
 }
 
 #new-btn {
@@ -182,7 +229,7 @@ body {
   font-family: 'PT Sans', sans-serif;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
   background-color: #4BD385;
-  color: white
+  color: white;
 }
 
 #update-burger-btn {
@@ -210,6 +257,19 @@ body {
 .burger-title button:hover {
   background-color: rgb(235, 204, 147);
   border: none;
+}
+
+.edit-btn {
+  background-color: orange;
+  border:none;
+  margin: none;
+}
+
+.edit-btn:hover {
+  background-color: rgb(235, 204, 147);
+  border:none;
+  margin: none;
+
 }
 
 // Create Your Burger
@@ -246,35 +306,33 @@ body {
 //=====================
 //Rating
 
-  .star:not(:checked) ~ label:hover,
-  .star:not(:checked) ~ label:hover ~ label{
-    color: #fd4;
-  }
+.star:not(:checked) ~ label:hover,
+.star:not(:checked) ~ label:hover ~ label{
+  color: #fd4;
+}
 
-  .star:checked ~ label{
-    color: #fd4;
-  }
+.star:checked ~ label{
+  color: #fd4;
+}
 
 .star-rating {
-
+  margin-bottom: 1em;
   input{
-  display: none;
+    display: none;
   }
 
-  label{
-  font-size: 40px;
-  color: #444;
-  padding: 10px;
-  float: left;
-  transition: all 0.2s ease;
+  label {
+    &:not(:first-child) {
+      margin-right: 10px;
+    }
+
+    display: inline;
+    padding: 0;
+    color: #444;
+    transition: all 0.2s ease;
   }
 }
 
-
-input#rate-5:checked ~ label{
-  color: #fe7;
-  text-shadow: 0 0 20px #952;
-}
 
 
 #rate-btn {
@@ -283,4 +341,38 @@ input#rate-5:checked ~ label{
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
   color: #707070;
 
+}
+
+.search-btn {
+  font-weight: bold;
+  font-family: 'PT Sans', sans-serif;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+  color: white;
+  background-color: #4bd3ce;
+
+}
+
+.search-btn:hover {
+  font-weight: bold;
+  font-family: 'PT Sans', sans-serif;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+  color: white;
+  background-color: #4bd3ce;
+}
+
+
+.reset-btn {
+  font-weight: bold;
+  font-family: 'PT Sans', sans-serif;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+  color: white;
+  background-color: #889d9c;
+}
+
+.reset-btn:hover {
+  font-weight: bold;
+  font-family: 'PT Sans', sans-serif;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+  color: white;
+  background-color: #889d9c;
 }

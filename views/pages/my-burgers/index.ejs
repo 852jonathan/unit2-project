@@ -6,64 +6,71 @@
 <%- contentFor('scripts') %>
 <script>
   $(document).ready(() => {
-    const $imgs = $('#burgers-list img')
-    let sumHeight = 0
-    let zIndex = 99
+    const $cards = $('.card')
 
-    $imgs.each((i) => {
-      const $elem = $imgs.eq(i)
-      $elem.css('top', sumHeight).css('z-index', zIndex)
-      sumHeight += (($elem.height() / 4)*1.2)
-      zIndex -= 1
+    $cards.each((i) => {
+      const $container = $cards.eq(i).find('#my-ingredients')
+      const $imgs = $cards.eq(i).find('img')
+      let containerHeight = 0
+      let sumHeight = 30
+      let zIndex = 99
+
+      $imgs.each((i) => {
+        const $elem = $imgs.eq(i)
+        $elem.css('top', sumHeight).css('z-index', zIndex)
+        sumHeight += (($elem.height() / 4) * 1.2)
+        zIndex -= 1
+        if ($imgs.length - 1 === i) {
+          containerHeight += $elem.height()
+        } else {
+          containerHeight += (($elem.height() / 4) * 1.2)
+        }
+      })
+      $container.height(`${containerHeight+50}px`)
     })
   })
   </script>
 
 <%- contentFor('body') %>
-<div id="burgers-index" class="container my-3 text-center">
-  <h1 class="mb-3 mt-5">My Burgers</h1>
+<div id="my-burgers-index" class="container my-3">
+  <h1 class="mb-3 mt-5 title text-center">My Burgers</h1>
 
-<!-- <- include('_partials/filter') %> --  <!-- <button id="new-btn" class="btn btn-success btn-sm mb-3" href="/my/burgers/new">CREATE NEW BURGER</button> -->
-  <a id="new-btn" class="btn btn-success btn-sm mb-3" href="/my/burgers/new">CREATE NEW BURGER</a>
+  <div class="text-center">
+    <%- include('_partials/filter') %>
+  </div>
+  <div class="text-center">
+    <a id="new-btn" class="btn btn-success btn mb-3 mx-auto" href="/my/burgers/new">CREATE A NEW BURGER</a>
+  </div>
 
-  <h2>My Burger Creations</h2>
-
+  <h2 class="title">My Burger Creations</h2>
   <% if (burgers.length > 0) { %>
-    <div id="burgers-list" class="row align-items-center g-3 text-center">
+    <div id="burgers-list" class="row align-items-center g-3 text-center align-items-stretch">
       <% burgers.forEach(function(burger){ %>
         <% const ingredients = JSON.parse(burger.ingredients) %>
 
         <div class="col-md-4">
-          <div class="card">
-            <!-- <img class="burger-preview-img card-img-top mx-auto edit-btn" src="/assets/burger-placeholder.png" alt="BurgerPreview"> -->
-
-            <div id="top-ingredient" class="d-flex flex-column w-100 align-items-center">
+          <div class="card position-relative h-100">
+            <div id="my-ingredients" class="d-flex flex-column align-items-center flex-grow-1">
               <% ingredients.topBun.forEach(function(ingredient) { %>
-                <img src='/assets/<%= ingredient %>.png'>
+                <img src='/assets/<%= ingredient %>.png' height="70" width="180">
               <% }) %>
-            </div>
-            <div id="mid-ingredient" class="d-flex flex-column w-100 align-items-center">
               <% ingredients.middle.forEach(function(ingredient) { %>
-                <img src='/assets/<%= ingredient %>.png'>
+                <img src='/assets/<%= ingredient %>.png' height="70" width="180">
               <% }) %>
-            </div>
-            <div id="bot-ingredient" class="d-flex flex-column w-100 align-items-center">
               <% ingredients.botBun.forEach(function(ingredient) { %>
-                <img src='/assets/<%= ingredient %>.png'>
+                <img src='/assets/<%= ingredient %>.png' height="70" width="180">
               <% }) %>
             </div>
-            <div class="card-body">
-              <h5 class="card-title text-truncate"><a href="/my/burgers/<%= burger.id %>" class="edit-btn font-weight-bold"><%= burger.burgerName %></a></h5>
+            <div class="card-body flex-grow-0">
+              <h5 class="card-title text-truncate"><a class="show-btn link-success font-weight-bold" href="/burgers/<%= burger.id %>"><%= burger.burgerName %></a></h5>
               <p class="burger-card-description card-text text-truncate"><%= burger.description %></p>
             </div>
           </div>
         </div>
+      <% }) %>
+    </div>
 
-
-        <% }) %>
-    </ul>
-
-    <!-- <- include('_partials/pagination') %> -->
+    <%- include('_partials/pagination') %>
   <% } else { %>
     <div>No Burgers</div>
   <% } %>
