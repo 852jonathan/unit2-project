@@ -18,7 +18,7 @@
       $imgs.each((i) => {
         const $elem = $imgs.eq(i)
         $elem.css('top', sumHeight).css('z-index', zIndex)
-        sumHeight += (($elem.height() / 4) * 1.2)
+        sumHeight += (($elem.height() / 4) * 1.1)
         zIndex -= 1
         if ($imgs.length - 1 === i) {
           containerHeight += $elem.height()
