@@ -2,26 +2,13 @@
     <title>Update Your Burger</title>
 
     <%- contentFor('styles') %>
-    <style>
-      /* @media (max-width: 500px) {
-        #selected-ingredient img {
-          width: 180px;
-          position: absolute;
-        }
-      }
-      @media (min-width: 992px) {
-        #selected-ingredient img {
-          width: 250px;
-          position: absolute;
-        }
-      } */
-    </style>
+
     <%- contentFor('scripts') %>
     <script src="/js/form-control.js" defer></script>
     <script>
       $(document).ready(() => {
         const $imgs = $('#selected-ingredient img')
-        let sumHeight = 0
+        let sumHeight = 50
         let zIndex = 99
 
         $imgs.each((i) => {
@@ -31,6 +18,11 @@
           zIndex -= 1
         })
 
+        const $textDash = $('.textDash').text()
+        $textDash = $textDash.replace(/-/g, ' ')
+        // let $textDash = $('.textDash').text()
+        // let $removeDash = $textDash.replace(/-/g,' ')
+        //   $('.textRemoveDash').html($removeDash)
       })
       </script>
 
@@ -92,17 +84,17 @@
               </div>
               <div id="top-ingredient" class="d-flex flex-column w-100 align-items-left">
                 <% ingredients.topBun.forEach(function(ingredient) { %>
-                  <div style="text-transform: capitalize"><%= ingredient %></div>
+                  <div class="textDash" style="text-transform: capitalize"><%= ingredient %></div>
                 <% }) %>
               </div>
               <div id="mid-ingredient" class="d-flex flex-column w-100 align-items-left">
                 <% ingredients.middle.forEach(function(ingredient) { %>
-                  <div style="text-transform: capitalize"><%= ingredient  %></div>
+                  <div class="textDash" style="text-transform: capitalize"><%= ingredient  %></div>
                 <% }) %>
               </div>
               <div id="bot-ingredient" class="d-flex flex-column w-100 align-items-left">
                 <% ingredients.botBun.forEach(function(ingredient) { %>
-                  <div style="text-transform: capitalize"><%= ingredient %></div>
+                  <div class="textDash" style="text-transform: capitalize"><%= ingredient %></div>
                 <% }) %>
               </div>
 
