@@ -41,7 +41,7 @@ $(document).ready(() => {
       }
     }
 
-    let sumHeight = 0
+    let sumHeight = 100
     let zIndex = 99
 
     const $imgs = $('#selected-ingredient img')
